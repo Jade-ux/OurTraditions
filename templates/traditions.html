@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traditions</title>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %} 
+
+    {% for tradition in traditions %}
+        <h2>{{ tradition.tradition_name.capitalize() }}</h2><br>
+        {{ tradition.tradition_description.capitalize() }}<br>
+        {{ tradition.group.capitalize() }}<br>
+        {{ tradition.category.capitalize() }}<br>
+        {{ tradition.country.capitalize() }}<br>
+        {{ tradition.keywords.capitalize() }}<br>
+    {% endfor %}
+
+{% endblock %}
