@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600|Ubuntu:300,500,700&display=swap");
+
+/*-------------------------------------------------General*/
+
+/*Stops website scrolling left and right on mobile:*/
+html,
+body {
+    overflow-x: hidden; 
+    width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+nav {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
