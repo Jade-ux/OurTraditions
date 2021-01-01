@@ -18,7 +18,7 @@ body {
   border: 0;
 }
 
-nav {
+nav, .btn, .btn-large {
     box-shadow: none;
     -webkit-box-shadow: none;
 }

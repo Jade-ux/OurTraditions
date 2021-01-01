@@ -16,21 +16,22 @@
         <!--top navbar-->
         <nav class="nav-extended amber darken-4">
             <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">Logo</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="{{ url_for('get_traditions') }}" class="brand-logo">Our Shared Traditions</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="about.html">About</a></li>
-                    <li><a href="browse.html">Browse</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="{{ url_for('get_traditions') }}">Browse</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="login.html">Login</a></li>
                 </ul>
             </div>
         </nav>
         <!--mobile sidenav-->
         <ul class="sidenav" id="mobile-demo">
+            <li><h4>Our Shared Traditions</h4></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="browse.html">Browse</a></li>
-            <li><a href="register.html">Register</a></li>
+            <li><a href="{{ url_for('get_traditions') }}">Browse</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="login.html">Login</a></li>
         </ul>
     </header>
@@ -38,7 +39,7 @@
     {% block content %}
     {% endblock %}    
 
-    <script src="http://code.jquery.com/jquery-3.5.1.min.js"
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
