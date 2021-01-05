@@ -27,6 +27,9 @@
                     <li><a href="{{ url_for('get_traditions') }}">Browse</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li>
+                        <a href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -39,6 +42,9 @@
             <li><a href="{{ url_for('get_traditions') }}">Browse</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li>
+                <a href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+            </li>
         </ul>
     </header>
     <section>

@@ -78,3 +78,9 @@ nav {
     font-size: 0.8em;
     padding-left: 45px;
 }
+
+/*-------------------------------------------------Icons*/
+
+.prefix.active.maroon {
+    color: #EF324F;
+}
