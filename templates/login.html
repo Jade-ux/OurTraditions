@@ -4,12 +4,12 @@
 <h3 class="center-align">Login</h3>
 
 <div class="row">
-    <form class="col s12 m8" method="POST" action="{{ url_for('login') }}">
+    <form class="col s12 offset-m3 m6" method="POST" action="{{ url_for('login') }}">
         <div class="card-panel">
             <!--username field-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-user prefix"></i>
+                    <i class="fas fa-user prefix maroon"></i>
                     <input id="username" name="username" type="text" minlength="4" max-length="15"
                         pattern="^[a-zA-Z0-9]{4,15}$" class="validate" required>
                     <label for="username">Enter your username</label>
@@ -18,7 +18,7 @@
             <!--password field-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-user-lock prefix light-text text darken"></i>
+                    <i class="fas fa-user-lock prefix maroon"></i>
                     <input id="password" name="password" type="password" minlength="8" max-length="20"
                         pattern="^[a-zA-Z0-9]{8,20}$" class="validate" required>
                     <label for="password">Enter your password</label>
@@ -26,15 +26,17 @@
             </div>
             <!--login button-->
             <div class="row">
-                <button type="submit" class="col s12 btn-large orange darken-3">Login <i
+                <button type="submit" class="col s12 btn-large maroon-button">Login <i
                         class="fas fa-door-open"></i></button>
             </div>
         </div>
     </form>
 </div>
             <div class="row">
-                <div class="col s12">
-                    <h4><a href="{{ url_for('register') }}">Not a member yet? Register here.</a></h4>
+                <div class="col s12 offset-m2 m8">
+                    <h5 class="hint-text">Not a member yet? 
+                        <a href="{{ url_for('register') }}">Register here.</a>
+                    </h5>
                 </div>
             </div>
 

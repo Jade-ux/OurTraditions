@@ -39,8 +39,6 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "confirm-password": generate_password_hash(
-                request.form.get("confirm-password"))
         }
         mongo.db.users.insert_one(register)
 
@@ -62,7 +60,7 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome,{}. This is where you can add, edit or delete your own traditions".format(request.form.get("username")))
+                flash("Welcome, {}".format(request.form.get("username")))
             else:
                 # invalid password match - we do not want to let them know exactly which they have wrong as that would make it easier to brute force entries
                 flash("The username/password you entered is incorrect, please try again")

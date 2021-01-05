@@ -18,7 +18,63 @@ body {
   border: 0;
 }
 
-nav, .btn, .btn-large {
+nav {
     box-shadow: none;
     -webkit-box-shadow: none;
+    padding: 10px 45px 10px 45px;
+}
+
+.flashed-messages h3 {
+    line-height: 2;
+    color: #dd2c00;
+}
+
+/*-------------------------------------------------Colours*/
+
+.maroon {
+    color: #B61753;
+}
+
+.gradient-bar {
+    background-image: linear-gradient(to bottom right, #F9A42C, #F05A24, #B61753);
+}
+
+/*-------------------------------------------------Buttons*/
+
+.btn-large:hover {
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.btn-large:focus {
+    box-shadow: none;
+}
+
+.maroon-button {
+    background-color: #B61753;
+    color: #fff;
+}
+
+.btn, .btn-large, .maroon-button:hover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.maroon-button:hover {
+    background-color: #EF324F;
+    color: #fff;
+}
+
+/*-------------------------------------------------Cards*/
+
+.hint-text {
+    font-size: 0.8em;
+}
+
+.hint-text {
+    color: #4c4b4b;
+    font-size: 0.8em;
+    padding-left: 45px;
 }
