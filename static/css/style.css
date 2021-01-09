@@ -79,6 +79,15 @@ nav {
     padding-left: 45px;
 }
 
+.col.trad-card {
+    margin: .5rem 1rem 1rem 0;
+    padding: 0px;
+}
+
+.card.col.m4.trad-card {
+        width: 31.3333333333%;
+}
+
 /*-------------------------------------------------Icons*/
 
 .prefix.active.maroon {
