@@ -2,57 +2,65 @@
 {% block content %}
 
 <h2>Add your traditions</h2>
-
+<!--Form-->
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" method="POST" action="{{ url_for('add_tradition') }}">
+    <!--Tradition name-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-heading prefix maroon"></i>
-                <input id="tradition_name" name="tradition_name" type="text" class="validate">
+                <input id="tradition_name" name="tradition_name" minlength="3" maxlength="50" type="text" class="validate" required>
                 <label for="tradition_name">Give your tradition a name</label>
             </div>
         </div>
+    <!--Category-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-stream prefix maroon"></i>
-                <select id="category_name" name="category_name
-">
+                <select id="category_name" name="category_name" class="validate" required>
                     <option value="" disabled selected>Pick a category</option>
-                    <option value="Birthdays">Birthdays</option>
-                    <option value="Holidays">Holidays (Christmas etc)</option>
-                    <option value="Marriage">Marriage</option>
-                    <option value="Pregnancy_and_birth">Pregnancy and birth</option>
-                    <option value="Religious_observance">Religious observance</option>
-                    <option value="Rites_of_passage">Rites of passage</option>
-                    <option value="Other">Other</option>
+                    {% for category in categories %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endfor %}
                 </select>
                 <label for="category_name">Category</label>
             </div>
         </div>
+    <!--Country-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-search-location prefix maroon"></i>
-                <input type="text" id="country-autocomplete" name="country_autocomplete" class="autocomplete">
-                <label for="country_autocomplete">Choose your country</label>
+                <input type="text" id="country" name="country" class="autocomplete validate" required>
+                <label for="country">Choose your country</label>
             </div>
+    <!--Keywords-->
             <div class="input-field col s12">
                 <i class="fas fa-list prefix maroon"></i>
-                <input id="keywords" name="keywords" type="text" class="validate">
+                <input id="keywords" name="keywords" minlength="3" maxlength="100" type="text" class="validate" required>
                 <label for="keywords">Add keywords, separated by commas</label>
             </div>
         </div>
+    <!--Description-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-comment-dots prefix maroon"></i>
-                <textarea id="tradition_description" name="tradition_description" class="materialize-textarea"></textarea>
+                <textarea id="tradition_description" name="tradition_description" minlength="10" maxlength="300" class="materialize-textarea validate" required></textarea>
                 <label for="tradition_description">Description</label>
             </div>
         </div>
+    <!--Upload image-->
+    <!--
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-image prefix maroon"></i>
                 <textarea id="file-upload" class="materialize-textarea"></textarea>
                 <label for="file-upload">Upload an image here</label>
+            </div>
+        </div>-->
+    <!--Submit button-->
+        <div class="row">
+            <div class="col s6">
+                <button type="submit" class="btn-large maroon-button">Add task <i class="fas fa-plus-circle right"></i></button> 
             </div>
         </div>
     </form>

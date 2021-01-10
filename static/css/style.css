@@ -63,6 +63,7 @@ h2 {
 .maroon-button {
     background-color: #B61753;
     color: #fff;
+    border-radius: 8px;
 }
 
 .btn, .btn-large, .maroon-button:hover {
