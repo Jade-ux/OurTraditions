@@ -1,15 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for tradition in traditions %}
+<!-- {% for tradition in traditions %}
 <h2>{{ tradition.tradition_name.capitalize() }}</h2><br>
 {{ tradition.tradition_description.capitalize() }}<br>
 {{ tradition.group.capitalize() }}<br>
 {{ tradition.category.capitalize() }}<br>
 {{ tradition.country.capitalize() }}<br>
 {{ tradition.keywords.capitalize() }}<br>
-{% endfor %}
+{% endfor %} -->
 <div class="row">
+    <div class="card-panel">
+        <h2>Browse traditions</h2>
+        <i class="fas fa-info-circle tooltipped" data-position="right" data-tooltip="Browse by keyword, category or country"></i>
+    </div>
+</div>
+<div class="row">
+    <h3>This is created with the for loop</h3>
+    {% for tradition in traditions %}
+    <div class="card col m4 trad-card">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="static/images/easter.jpg">
+        </div>
+        <div class="card-content">
+            <span class="card-title grey-text text-darken-4">{{ tradition.tradition_name.capitalize() }}
+                <i class="material-icons right">user</i>
+            </span>
+            <p><a class="card-title activator" href="#">Read more</a></p>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Description
+                <i class="fas fa-times right">
+                    <span class="sr-only">Close</span>
+                </i>
+            </span>
+            <p>{{ tradition.tradition_description.capitalize() }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="row">
+    <h3>This is what the cards should look like</h3>
     <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="static/images/easter.jpg">

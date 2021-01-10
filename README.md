@@ -28,8 +28,12 @@ This section is also where you would share links to any wireframes, mockups, dia
 In this section, you should go over the different parts of your project, and describe each in a sentence or so.
 
 ### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+- Register function - allows users register so that they can create content and update or delete content they have created.
+- Log in feature - allows users who have already registered to log in to the site and manage the traditions they have added. (Also allows them to vote on other traditions)
+- Add tradition feature - allows logged in users to add new traditions
+- File upload feature - allows logged in users to add images to illustrate their traditions by uploading an image. The uploaded image is stored on Amazon AWS and the link retrieved and added to the image element.
+- Choose an image feature - allows users to choose from a library of available images already uploaded and available on the site, in cases where they do not have their own image to upload. Only images relevant to teh category the user has chosen will show as available in order to provide the most relevant choices to the user.
+- ...allows users X to achieve Y, by having them fill out Z
 
 For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 

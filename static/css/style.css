@@ -29,6 +29,14 @@ nav {
     color: #dd2c00;
 }
 
+/*-------------------------------------------------Headings*/
+
+h2 {
+    font-size: 2.75rem;
+    color: #b61753;
+    font-weight: 600;
+}
+
 /*-------------------------------------------------Colours*/
 
 .maroon {
@@ -91,5 +99,22 @@ nav {
 /*-------------------------------------------------Icons*/
 
 .prefix.active.maroon {
-    color: #EF324F;
+    color: #F05A24;
+}
+
+/*-------------------------------------------------Forms*/
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom: #F05A24;
+    box-shadow: 0 2px 0 0 #F05A24;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #F05A24;
+}
+
+.dropdown-content li>span {
+    color: #F05A24;
 }

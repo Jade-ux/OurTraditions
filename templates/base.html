@@ -29,7 +29,7 @@
                         <li>
                             <a href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                         </li>
-                        <li><a href="#">Add tradition</a></li>
+                        <li><a href="{{ url_for('add_tradition') }}">Add tradition</a></li>
                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                         <li>
                     {% else %}
@@ -47,7 +47,7 @@
                 <li>
                     <a href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                 </li>
-                <li><a href="#">Add tradition</a></li>
+                <li><a href="{{ url_for('add_tradition') }}">Add tradition</a></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 <li>
             {% else %}

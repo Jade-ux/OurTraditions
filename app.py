@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_traditions")
 def get_traditions():
-    traditions = mongo.db.traditions.find()
+    traditions = list(mongo.db.traditions.find())
     return render_template("traditions.html", traditions=traditions)
 
 
@@ -99,6 +99,11 @@ def logout():
     flash("You are now logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/add-tradition")
+def add_tradition():
+    return render_template("add-tradition.html")
 
 
 if __name__ == "__main__":
