@@ -21,7 +21,7 @@ body {
 nav {
     box-shadow: none;
     -webkit-box-shadow: none;
-    padding: 10px 45px 10px 45px;
+    padding: 30px 45px 20px 45px;
 }
 
 .flashed-messages h3 {
@@ -36,20 +36,33 @@ body {
 
 /*-------------------------------------------------Headings*/
 
+.grad-wrapper {
+    width: 100%;
+	height: 100vh;
+}
+
+.brand-logo {
+    position: relative;
+}
+
 h1 {
     font-size: 2.75rem;
     font-family: 'Julius Sans One', sans-serif;
+    margin: 0.8rem 0 1.68rem 0;
+    background: linear-gradient(to right, #F9A42C 0%, #EF324F 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 h2 {
-    font-size: 2.75rem;
-    color: #b61753;
-    font-weight: 600;
+    font-size: 2.5rem;
+    color: #F68931;
+    font-weight: 300;
     font-family: 'Raleway', sans-serif;
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     color: #2b2b2b;
     font-weight: 500;
     font-family: 'Raleway', sans-serif;
@@ -64,14 +77,26 @@ h4 {
     margin-top: 0.2rem;
 }
 
+#search {
+    color: #fff;
+    margin-top: 20px;
+}
+
+/*-------------------------------------------------Navigation*/
+
+.nav-bar-grey{
+    background-color: #071E26;
+    min-height: 90px;
+}
+
 /*-------------------------------------------------Colours*/
 
 .maroon {
     color: #B61753;
 }
 
-.gradient-bar {
-    background-image: linear-gradient(to bottom right, #F9A42C, #F05A24, #B61753);
+.white-text {
+    color: #fff;
 }
 
 /*-------------------------------------------------Buttons*/
@@ -117,6 +142,20 @@ h4 {
     border-radius: 3px;
 }
 
+/*-------------------------------------------------Containers*/
+
+.container-img {
+    background-color: #071E26;
+    background-image: url('/static/images/present.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.gradient-block {
+    background-image: linear-gradient(to bottom right, #F9A42C, #F05A24, #B61753);
+}
+
 /*-------------------------------------------------Cards*/
 
 .hint-text {
@@ -154,6 +193,22 @@ h4 {
 
 .row.card-ud-actions {
     margin: 1.3rem 0 1.1rem 0;
+}
+
+.card.col.m4.trad-card {
+    width: 31.3333333333%;
+}
+
+@media only screen and (max-width: 1023px) {
+    .card.col.m4.trad-card {
+    width: 100%;
+    }
+    .nav-bar-grey{
+        min-height: 190px;
+}
+    nav.brand-logo{
+    left: 30%;
+    }
 }
 
 /*-------------------------------------------------Icons*/

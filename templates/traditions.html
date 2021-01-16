@@ -2,14 +2,25 @@
 {% block content %}
 
 <div class="row">
-    <div class="card-panel">
-        <h2>Browse traditions</h2>
-        <i class="fas fa-info-circle tooltipped" data-position="right"
-            data-tooltip="Browse by keyword, category or country"></i>
+    <div class="col s12">
+        <h2>Browse & share</h2>
+        <p class="white-text">This is a place to share our traditions; whether they are cultural or unique traditions practised only among your friends or family. Share yours, browse others and, if you find a tradition someone else has added that you do too, click the  <i class="fas fa-heart"></i> . </p>
+    </div>
+        <div class="row">
+            <div class="col s12"><h3 id="search">Search</h3></div>
+            <div class="col s4">
+                <input type="text" id="keyword-search" name="keyword-search" placeholder="Search by keyword">
+        </div>
+            <div class="col s4">
+                <input type="text" id="keyword-search" name="keyword-search" placeholder="By country">
+        </div>
+            <div class="col s4">
+                <input type="text" id="keyword-search" name="keyword-search" placeholder="By category">
+        </div>
     </div>
 </div>
 <div class="row">
-    <h3>Latest posts</h3>
+    <h2>Latest posts</h2>
     {% for tradition in traditions %}
     <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
