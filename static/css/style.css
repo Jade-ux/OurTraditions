@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600|Ubuntu:300,500,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Julius+Sans+One&family=Raleway:wght@400;500;600&display=swap');
 
 /*-------------------------------------------------General*/
 
@@ -29,12 +29,39 @@ nav {
     color: #dd2c00;
 }
 
+body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
 /*-------------------------------------------------Headings*/
+
+h1 {
+    font-size: 2.75rem;
+    font-family: 'Julius Sans One', sans-serif;
+}
 
 h2 {
     font-size: 2.75rem;
     color: #b61753;
     font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+}
+
+h3 {
+    font-size: 1.75rem;
+    color: #2b2b2b;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    margin: 0.3rem 0 1.1rem 0;
+}
+
+h4 {
+    font-size: 1rem;
+    color: #2b2b2b;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0.2rem;
 }
 
 /*-------------------------------------------------Colours*/
@@ -63,10 +90,10 @@ h2 {
 .maroon-button {
     background-color: #B61753;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 3px;
 }
 
-.btn, .btn-large, .maroon-button:hover {
+.btn, .btn-large, .btn-small, .btn-large:hover, .btn-small:hover  {
     box-shadow: none;
     -webkit-box-shadow: none;
 }
@@ -76,15 +103,29 @@ h2 {
     color: #fff;
 }
 
+.maroon-outline-button {
+    background-color: #fff;
+    border: 2px solid #B61753;
+    color:  #B61753;
+    border-radius: 3px;
+    font-weight: 600; 
+}
+
+.maroon-outline-button:hover {
+    background-color: #B61753;
+    color: #fff;
+    border-radius: 3px;
+}
+
 /*-------------------------------------------------Cards*/
 
 .hint-text {
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 .hint-text {
     color: #4c4b4b;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     padding-left: 45px;
 }
 
@@ -94,7 +135,25 @@ h2 {
 }
 
 .card.col.m4.trad-card {
-        width: 31.3333333333%;
+    width: 31.3333333333%;
+}
+
+.card-title {
+    font-weight: 400;
+    margin-bottom: 1.1rem;
+}
+
+.card-icon {
+    margin-right: 10px;  
+    font-size: 1.4rem;
+}
+
+.row.card-actions {
+    margin: 1rem 0 1rem 0;
+}
+
+.row.card-ud-actions {
+    margin: 1.3rem 0 1.1rem 0;
 }
 
 /*-------------------------------------------------Icons*/

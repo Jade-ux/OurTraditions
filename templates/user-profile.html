@@ -10,7 +10,34 @@
         </div>
     </div>
     <div>
-        <!--Add user's traditions here-->
+        <div class="row">
+    <h3>Your traditions</h3>
+    {% for tradition in traditions %}
+    <div class="card col m4 trad-card">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="static/images/easter.jpg">
+        </div>
+        <div class="card-content">
+            <span class="card-title grey-text text-darken-4">{{ tradition.tradition_name.capitalize() }}
+                <i class="material-icons right">user</i>
+            </span>
+            <p><a class="card-title activator" href="#">Read more</a></p>
+        </div>
+        <div class="class-content">
+          <a class="waves-effect btn-small maroon-button"><i class="fas fa-pencil-alt left"></i>Edit</a> 
+            <a class="waves-effect btn-small maroon-button"><i class="fas fa-trash-alt left"></i>Delete</a> 
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Description
+                <i class="fas fa-times right">
+                    <span class="sr-only">Close</span>
+                </i>
+            </span>
+            <p>{{ tradition.tradition_description.capitalize() }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
     </div>
 </div>
 

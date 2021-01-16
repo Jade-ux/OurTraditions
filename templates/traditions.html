@@ -4,21 +4,53 @@
 <div class="row">
     <div class="card-panel">
         <h2>Browse traditions</h2>
-        <i class="fas fa-info-circle tooltipped" data-position="right" data-tooltip="Browse by keyword, category or country"></i>
+        <i class="fas fa-info-circle tooltipped" data-position="right"
+            data-tooltip="Browse by keyword, category or country"></i>
     </div>
 </div>
 <div class="row">
-    <h3>This is created with the for loop</h3>
+    <h3>Latest posts</h3>
     {% for tradition in traditions %}
     <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="static/images/easter.jpg">
         </div>
         <div class="card-content">
-            <span class="card-title grey-text text-darken-4">{{ tradition.tradition_name.capitalize() }}
-                <i class="material-icons right">user</i>
-            </span>
-            <p><a class="card-title activator" href="#">Read more</a></p>
+            <div class="col s12">
+                <h3 class="card-title grey-text text-darken-4">{{ tradition.tradition_name.capitalize() }}
+                </h3>
+            </div>
+            <div class="col s12">
+                <h4 class="card-details"><i
+                        class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country.capitalize() }}
+                </h4>
+            </div>
+            <div class="col s12">
+            <h4 class="card-details">
+                <i class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
+            </h4>
+            </div>
+            <div class="col s12">
+                        <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
+                <i class="fas fa-user right"></i>
+                        </h4>
+</div>
+<div class="row card-actions">
+<div class="col s8">
+            <p><a class="card-details btn-small maroon-outline-button activator" href="#">Read more</a></p>
+            </div>
+            <div class="col s4">
+            <p><a class="card-details btn-small maroon-button right" href="#"><i class="fas fa-heart"></i></a></p>
+            </div>
+            </div>
+            <div class="row card-ud-actions">
+                <div class="col s6">
+            <a class="waves-effect btn-small maroon-button"><i class="fas fa-pencil-alt right"></i>Edit</a>
+            </div>
+            <div class="col s6">
+            <a class="waves-effect btn-small maroon-button right"><i class="fas fa-trash-alt right"></i>Delete</a>
+            </div>
+            </div>
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">Description
@@ -43,12 +75,13 @@
                     class="material-icons right">more_vert</i></span>
             <p><a href="#">This is a link</a></p>
         </div>
+
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
             <p>Here is some more information about this product that is only revealed once clicked on.</p>
         </div>
     </div>
-        <div class="card col m4 trad-card">
+    <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="static/images/easter.jpg">
         </div>
@@ -62,7 +95,7 @@
             <p>Here is some more information about this product that is only revealed once clicked on.</p>
         </div>
     </div>
-        <div class="card col m4 trad-card">
+    <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
             <img class="activator" src="static/images/easter.jpg">
         </div>
