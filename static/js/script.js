@@ -2,6 +2,7 @@
     $('.sidenav').sidenav({edge: "right"});
     $('.tooltipped').tooltip();
      $('select').formSelect();
+     $('.modal').modal();
      //Country autocomplete for the add-tradition page
       $('input.autocomplete').autocomplete({
       data: {

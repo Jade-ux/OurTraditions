@@ -149,6 +149,13 @@ def edit_tradition(tradition_id):
         "edit_tradition.html", tradition=tradition, categories=categories)
 
 
+@app.route("/delete_tradition/<tradition_id>")
+def delete_tradition(tradition_id):
+    mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
+    flash("Your tradition has been deleted.")
+    return redirect(url_for("get_traditions"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

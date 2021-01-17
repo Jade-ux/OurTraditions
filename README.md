@@ -38,7 +38,7 @@ In this section, you should go over the different parts of your project, and des
 - File upload - allows logged in users to add images to illustrate their traditions by uploading an image. The uploaded image is stored on Amazon AWS and the link retrieved and added to the image element.
 - Choose an image - allows users to choose from a library of available images already uploaded and available on the site, in cases where they do not have their own image to upload. Only images relevant to teh category the user has chosen will show as available in order to provide the most relevant choices to the user.
 - Edit - Allows a logged in user to edit any of the details of a tradition she has created by clicking the 'Edit' button on the tradition card and then changing the details.
-- Delete - Allows a logged in user to delete any of the traditions she has created by clicking the 'Delete' button on the tradition card.
+- Delete - Allows a logged in user to delete any of the traditions she has created by clicking the 'Delete' button on the tradition card. When the 'Delete' button the tradition is not deleted immediately but a modal pops up asking the user to confirm that they wish to delete it. Only once they have confirmed they want to delete the tradition it is deleted.
 - Read more button on card - reveals the full description of the tradition when the user clicks the 'Read more' link. If the description overflows the height of the card a scroll bar will be visible to allow the user to scroll through the content.
 - Profile page - allows logged in users to see the traditions they have added and manage them by editing or deleting.
 
