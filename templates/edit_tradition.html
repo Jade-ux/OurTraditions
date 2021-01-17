@@ -60,10 +60,14 @@
                 <label for="file-upload">Upload an image here</label>
             </div>
         </div>-->
-    <!--Submit button-->
         <div class="row">
             <div class="col s6">
+                <!--Submit button-->
                 <button type="submit" class="btn-large maroon-button">Save your changes <i class="fas fa-cloud-upload-alt right"></i></button> 
+            </div>
+                <!--Cancel button-->
+            <div class="col s6">
+                <a href="{{ url_for('get_traditions') }}" class="btn-large orange-button"><i class="fas fa-times right"></i>Cancel</a>
             </div>
         </div>
     </form>

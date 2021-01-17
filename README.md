@@ -23,6 +23,10 @@ In particular, as part of this section we recommend that you provide a list of U
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
+## Design choices
+
+- Cards - I chose to make each tradition card span the full width of the screen on any device instead of four thirds of the page width on desktop (as I had originally planned). My main reason for this is that as users create the content there will more often than not be a number of cards that is not divisable by 3 and this would make the design look uneven if the layout broke the content into three quarters. 
+
 ## Features
 
 In this section, you should go over the different parts of your project, and describe each in a sentence or so.
@@ -36,6 +40,8 @@ In this section, you should go over the different parts of your project, and des
 - Edit - Allows a logged in user to edit any of the details of a tradition she has created by clicking the 'Edit' button on the tradition card and then changing the details.
 - Delete - Allows a logged in user to delete any of the traditions she has created by clicking the 'Delete' button on the tradition card.
 - Read more button on card - reveals the full description of the tradition when the user clicks the 'Read more' link. If the description overflows the height of the card a scroll bar will be visible to allow the user to scroll through the content.
+- Profile page - allows logged in users to see the traditions they have added and manage them by editing or deleting.
+
 - ...allows users X to achieve Y, by having them fill out Z
 
 For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.

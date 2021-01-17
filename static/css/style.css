@@ -24,9 +24,10 @@ nav {
     padding: 30px 45px 20px 45px;
 }
 
-.flashed-messages h3 {
+.flashed-messsages {
     line-height: 2;
-    color: #dd2c00;
+    color: snow;
+    font-size: 1.4rem;
 }
 
 body {
@@ -112,19 +113,30 @@ h4 {
     box-shadow: none;
 }
 
+.btn, .btn-large, .btn-small, .btn-large:hover, .btn-small:hover  {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
 .maroon-button {
     background-color: #B61753;
     color: #fff;
     border-radius: 3px;
 }
 
-.btn, .btn-large, .btn-small, .btn-large:hover, .btn-small:hover  {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
-
 .maroon-button:hover {
     background-color: #EF324F;
+    color: #fff;
+}
+
+.orange-button {
+    background-color: #F05A24;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.orange-button:hover {
+    background-color: #F68931;
     color: #fff;
 }
 

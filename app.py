@@ -81,14 +81,15 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/user-profile/<username>", methods=["GET", "POST"])
+@app.route("/user_profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    traditions = list(mongo.db.traditions.find())
     # get the session user's username from the database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
     if session["user"]:
-        return render_template("user-profile.html", username=username)
+        return render_template(
+            "user_profile.html", username=username, traditions=traditions)
 
     return redirect(url_for("login"))
 
@@ -125,9 +126,27 @@ def add_tradition():
 
 @app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])
 def edit_tradition(tradition_id):
+    if request.method == "POST":
+        # collects the form fields and creates a dictionary
+        edit_tradition = {
+            "tradition_name": request.form.get("tradition_name"),
+            "category_name": request.form.get("category_name"),
+            "country": request.form.get("country"),
+            # this will allow the function to get multiple elements with
+            # the same name attribute, where we are storing an array
+            "keywords": request.form.getlist("keywords"),
+            "tradition_description": request.form.get("tradition_description"),
+            "created_by": session["user"]
+        }
+        mongo.db.traditions.update(
+            {"_id": ObjectId(tradition_id)}, edit_tradition)
+        flash("Your tradition has been updated.")
+
+    # if method is not POST then revert to this default
     tradition = mongo.db.traditions.find_one({"_id": ObjectId(tradition_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("edit_tradition.html", tradition=tradition, categories=categories)
+    return render_template(
+        "edit_tradition.html", tradition=tradition, categories=categories)
 
 
 if __name__ == "__main__":

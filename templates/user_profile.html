@@ -2,34 +2,20 @@
 {% block content %}
 
 <div class="row">
-    <div class="col s12">
-        <h2>Browse & share</h2>
-        <p class="white-text">This is a place to share our traditions; whether they are cultural or unique traditions
-            practised only among your friends or family. Share yours, browse others and, if you find a tradition someone
-            else has added that you do too, click the <i class="fas fa-heart"></i> . </p>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <h3 id="search">Search</h3>
-        </div>
-        <div class="col s4">
-            <input type="text" id="keyword-search" name="keyword-search" placeholder="Search by keyword">
-        </div>
-        <div class="col s4">
-            <input type="text" id="keyword-search" name="keyword-search" placeholder="By country">
-        </div>
-        <div class="col s4">
-            <input type="text" id="keyword-search" name="keyword-search" placeholder="By category">
-        </div>
+    <div class="col s12 m6 offset-m3">
+        <h2 class="center-align">
+            {{ username }}'s profile
+        </h2>
     </div>
 </div>
 <div class="row">
-    <h2>Latest posts</h2>
+    <h2>Your traditions</h2>
     <!--Tradition cards-->
     {% for tradition in traditions %}
+    {% if session.user|lower == tradition.created_by|lower %}
     <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="static/images/easter.jpg">
+            <img class="activator" src="/static/images/easter.jpg">
         </div>
         <div class="card-content">
             <div class="col s12">
@@ -61,7 +47,6 @@
                 </div>
             </div>
             <!--Edit and delete buttons-->
-            {% if session.user|lower == tradition.created_by|lower %}
             <div class="row card-ud-actions">
                 <div class="col s6">
                     <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
@@ -72,7 +57,6 @@
                             class="fas fa-trash-alt right"></i>Delete</a>
                 </div>
             </div>
-            {% endif %}
         </div>
         <!--Card reveal-->
         <div class="card-reveal">
@@ -84,6 +68,8 @@
             <p>{{ tradition.tradition_description.capitalize() }}</p>
         </div>
     </div>
+    {% endif %}
     {% endfor %}
 </div>
+
 {% endblock %}
