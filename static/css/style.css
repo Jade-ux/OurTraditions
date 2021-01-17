@@ -149,6 +149,7 @@ h4 {
     background-image: url('/static/images/present.png');
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: -6px
 }
 
 
@@ -175,6 +176,10 @@ h4 {
 
 .card.col.m4.trad-card {
     width: 31.3333333333%;
+}
+
+.card-content {
+    background-color: snow;
 }
 
 .card-title {
@@ -218,6 +223,20 @@ h4 {
 }
 
 /*-------------------------------------------------Forms*/
+
+.form-row {
+    background-color: rgb(0 0 0 / 56%);
+    padding: 20px;
+}
+
+.select-wrapper>.caret {
+    fill: #b61753;
+    height: 35px;
+}
+
+input, textarea {
+    color: #fff;
+}
 
 input[type=text]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]){

@@ -123,6 +123,13 @@ def add_tradition():
     return render_template("add_tradition.html", categories=categories)
 
 
+@app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])
+def edit_tradition(tradition_id):
+    tradition = mongo.db.traditions.find_one({"_id": ObjectId(tradition_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_tradition.html", tradition=tradition, categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

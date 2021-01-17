@@ -21,6 +21,7 @@
 </div>
 <div class="row">
     <h2>Latest posts</h2>
+    <!--Tradition cards-->
     {% for tradition in traditions %}
     <div class="card col m4 trad-card">
         <div class="card-image waves-effect waves-block waves-light">
@@ -56,13 +57,14 @@
             </div>
             <div class="row card-ud-actions">
                 <div class="col s6">
-            <a class="waves-effect btn-small maroon-button"><i class="fas fa-pencil-alt right"></i>Edit</a>
+            <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}" class="waves-effect btn-small maroon-button"><i class="fas fa-pencil-alt right"></i>Edit</a>
             </div>
             <div class="col s6">
-            <a class="waves-effect btn-small maroon-button right"><i class="fas fa-trash-alt right"></i>Delete</a>
+            <a href="" class="waves-effect btn-small maroon-button right"><i class="fas fa-trash-alt right"></i>Delete</a>
             </div>
             </div>
         </div>
+        <!--Card reveal-->
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">Description
                 <i class="fas fa-times right">
@@ -73,52 +75,5 @@
         </div>
     </div>
     {% endfor %}
-</div>
-
-<div class="row">
-    <h3>This is what the cards should look like</h3>
-    <div class="card col m4 trad-card">
-        <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="static/images/easter.jpg">
-        </div>
-        <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i
-                    class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-        </div>
-
-        <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-    <div class="card col m4 trad-card">
-        <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="static/images/easter.jpg">
-        </div>
-        <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i
-                    class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-    <div class="card col m4 trad-card">
-        <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="static/images/easter.jpg">
-        </div>
-        <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Card Title<i
-                    class="material-icons right">more_vert</i></span>
-            <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
 </div>
 {% endblock %}
