@@ -23,9 +23,10 @@ In particular, as part of this section we recommend that you provide a list of U
 
 This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
 
-## Design choices
+## Design 
 
 - Cards - I chose to make each tradition card span the full width of the screen on any device instead of four thirds of the page width on desktop (as I had originally planned). My main reason for this is that as users create the content there will more often than not be a number of cards that is not divisable by 3 and this would make the design look uneven if the layout broke the content into three quarters. 
+- For my logo text I have used a gradient background and I wanted to make sure this would be compatable in all browsers. On researching this I found the only browser that does not support the background colour for text is Internet Explorer, [see documentation here.](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-fill-color) Therefore I have added a fallback color for that browser.
 
 ## Features
 
@@ -101,6 +102,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 
 ### Media
+- The background image for this site is from https://www.toptal.com/ 
 - The photos used in this site were obtained from ...
 
 ### Acknowledgements

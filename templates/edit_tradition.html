@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row form-row">
+<div class="row overlay-row">
     <h2>Edit tradition</h2>
     <!--Form-->
     <form class="col s12" method="POST" action="{{ url_for('edit_tradition', tradition_id=tradition._id) }}">

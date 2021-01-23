@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row">
+<div class="row overlay-row">
     <div class="col s12">
         <h2>Browse & share</h2>
         <p class="white-text">This is a place to share our traditions; whether they are cultural or unique traditions
@@ -23,7 +23,8 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row overlay-row">
+    <div class="col s12">
     <h2>Latest posts</h2>
     <!--Tradition cards-->
     {% for tradition in traditions %}
@@ -84,11 +85,12 @@
             <p>{{ tradition.tradition_description.capitalize() }}</p>
         </div>
     </div>
+    </div>
     <!-- Modal for delete confirmation -->
     <div id="modal1" class="modal">
         <div class="modal-content">
             <h4>Delete tradition</h4>
-            <p>Are you sure you want to delete this tradition?</p>
+            <p>Are you sure you want to delete the {{ tradition.tradition_name.capitalize() }} tradition?</p>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, cancel</a>
