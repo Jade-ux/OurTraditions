@@ -98,6 +98,9 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ## Credits
 
+- [This tutorial helped me build an image uploader](https://www.youtube.com/watch?v=6WruncSoCdI)
+
+
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 

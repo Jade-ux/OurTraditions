@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 if os.path.exists("env.py"):
     import env
 
@@ -121,6 +122,7 @@ def add_tradition():
             "country": request.form.get("country"),
             "tradition_description": request.form.get("tradition_description"),
             "created_by": session["user"]
+            # "image": upload_image()
         }
         mongo.db.traditions.insert_one(tradition)
         flash("Your tradition has been added!")
@@ -130,6 +132,45 @@ def add_tradition():
     categories = mongo.db.categories.find().sort("category_name", 1)
     groups = mongo.db.groups.find().sort("group_name", 1)
     return render_template("add_tradition.html", categories=categories)
+
+# this code was inspired by this tutorial: 
+# https://www.youtube.com/watch?v=6WruncSoCdI 
+app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
+app.config["VALID_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
+
+def valid_images(filename):
+    if not "." in filename:
+        return False
+
+    extension = filename.rsplit(".", 1)[1]
+
+    if extension.upper() in app.config["VALID_IMAGE_EXTENSIONS"]:
+        return True
+    else: 
+        return False
+
+
+@app.route("/upload_image", methods=["GET", "POST"])
+def upload_image():
+    if request.method == "POST":
+        if request.files:
+            image = request.files["image"]
+            if image.filename == "":
+                flash("Please choose an image with a filename")
+                return redirect(request.url)
+
+            if not valid_images(image.filename):
+                flash("Please choose an image with a file type of either jpg, jpeg, png or gif")
+                return redirect(request.url)
+
+            else: 
+                filename = secure_filename(image.filename)
+                image.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
+            image.save(os.path.join(
+                app.config["IMAGE_UPLOADS"], image.filename))
+            flash("Your image has been uploaded")
+            return redirect(request.url)
+    return render_template("image_upload.html")
 
 
 @app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])

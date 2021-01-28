@@ -6,10 +6,13 @@
         <h2>Browse & share</h2>
         <p class="white-text">This is a place to share our traditions; whether they are cultural or unique traditions
             practised only among your friends or family. Share yours, browse others and, if you find a tradition someone
-            else has added that you do too, click the <i class="fas fa-heart"></i> . </p>
+            else has added that you do too, click the <i class="fas fa-heart"></i> </p>
+            <!--<p><a href="{{ url_for('upload_image') }}">Go to image upload</a></p>-->
     </div>
     <div class="row">
+        <div class="col s12">
         <h3 id="search">Search</h3>
+        </div>
         <form action="{{ url_for('search') }}" method="post" class="col s12">
             <div class="col s12 m3">
                 <input type="text" id="keywords" name="keywords" placeholder="Search by keyword" minlength="3">
@@ -36,16 +39,16 @@
 <div class="row">
     {% if traditions|length > 0 %}
     <div class="col s12">
-        <h2>We've found matches for your search!</h2>
+        <h2>Traditions</h2>
     </div>
-    <div class="col s12">
+    <div class="row">
         <!--Tradition cards-->
         {% for tradition in traditions %}
         <div class="card col s12 trad-card">
             <div class="row card-row">
         <div class="col s12 m4">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="static/images/easter.jpg">
+                <img class="" src="static/images/easter.jpg">
             </div>
         </div>
        <div class="col s12 m8">
@@ -72,7 +75,7 @@
                 </div>
                 <div class="row card-actions">
                     <div class="col s12 m4">
-                        <p><a class="card-details btn-small maroon-button activator" href="#">Read more</a></p>
+                        <p><button class="card-details btn-small maroon-button activator">Read more</button></p>
                     </div>        
                 <!--Edit and delete buttons, if tradition belongs to user-->
                 {% if session.user|lower == tradition.created_by|lower %}
@@ -138,7 +141,9 @@
     </div>
 </div>
 {% endif %}
+<!--
 <div>
     <h2>Newest additions to our traditions</h2>
 </div>
+-->
 {% endblock %}

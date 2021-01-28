@@ -257,6 +257,11 @@ nav {
     .card.col.m4.trad-card {
     width: 100%;
     }
+
+    .card {
+    border-bottom: #b61753 5px solid;
+    border-right: none;
+}
 }
 
 /*-------------------------------------------------Icons*/
