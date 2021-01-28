@@ -13,7 +13,7 @@
                 <label for="tradition_name">Give your tradition a name</label>
             </div>
         </div>
-    <!--Category-->
+        <!--Category-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-stream prefix maroon"></i>
@@ -29,6 +29,22 @@
                 <label for="category_name">Category</label>
             </div>
         </div>
+        <!--Group-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-users prefix maroon"></i>
+                <select id="group_name" name="group_name" class="validate" required>
+                    {% for group in groups %}
+                        {% if group.group_name == tradition.group_name %}
+                            <option value="{{ group.group_name }}" selected>{{ group.group_name }}</option>
+                        {% else %}
+                            <option value="{{ group.group_name }}">{{ group.group_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="group_name">Group</label>
+            </div>
+        </div>
     <!--Country-->
         <div class="row">
             <div class="input-field col s12">
@@ -36,13 +52,6 @@
                 <input type="text" id="country" name="country" class="autocomplete validate" value="{{ tradition.country }}" required>
                 <label for="country">Choose your country</label>
             </div>
-    <!--Keywords-->
-            <div class="input-field col s12">
-                <i class="fas fa-list prefix maroon"></i>
-                <input id="keywords" name="keywords" minlength="3" maxlength="100" type="text" class="validate" value="{{ tradition.keywords }}" required>
-                <label for="keywords">Add keywords, separated by commas</label>
-            </div>
-        </div>
     <!--Description-->
         <div class="row">
             <div class="input-field col s12">
@@ -63,11 +72,11 @@
         <div class="row">
             <div class="col s6">
                 <!--Submit button-->
-                <button type="submit" class="btn-large maroon-button">Save your changes <i class="fas fa-cloud-upload-alt right"></i></button> 
+                <button type="submit" class="btn-small maroon-button">Save your changes <i class="fas fa-cloud-upload-alt right"></i></button> 
             </div>
                 <!--Cancel button-->
             <div class="col s6">
-                <a href="{{ url_for('get_traditions') }}" class="btn-large orange-button"><i class="fas fa-times right"></i>Cancel</a>
+                <a href="{{ url_for('get_traditions') }}" class="btn-small orange-button"><i class="fas fa-times right"></i>Cancel</a>
             </div>
         </div>
     </form>

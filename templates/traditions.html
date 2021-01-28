@@ -9,82 +9,111 @@
             else has added that you do too, click the <i class="fas fa-heart"></i> . </p>
     </div>
     <div class="row">
-        <div class="col s12">
-            <h3 id="search">Search</h3>
-        </div>
-        <div class="col s4">
-            <input type="text" id="keyword-search" name="keyword-search" placeholder="Search by keyword">
-        </div>
-        <div class="col s4">
-            <input type="text" id="keyword-search" name="keyword-search" placeholder="By country">
-        </div>
-        <div class="col s4">
-            <input type="text" id="keyword-search" name="keyword-search" placeholder="By category">
-        </div>
+        <h3 id="search">Search</h3>
+        <form action="{{ url_for('search') }}" method="post" class="col s12">
+            <div class="col s12 m3">
+                <input type="text" id="keywords" name="keywords" placeholder="Search by keyword" minlength="3">
+            </div>
+            <div class="col s12 m3">
+                <input type="text" id="countries" name="countries" placeholder="By country">
+            </div>
+            <div class="col s12 m3">
+                <input type="text" id="category_search" name="category_search" placeholder="By category">
+            </div>
+            <div class="col s12 m3">
+                <input type="text" id="group_search" name="group_search" placeholder="By group">
+            </div>
+            <div class="col s12">
+                <a href="{{ url_for('get_traditions') }}" class="orange-button btn-small">Reset</a>
+                <button type="submit" class="maroon-button btn-small">
+                    <i class="fas fa-search left"></i> Search
+                </button>
+            </div>
+        </form>
     </div>
 </div>
-<div class="row overlay-row">
+<!--Search results-->
+<div class="row">
+    {% if traditions|length > 0 %}
     <div class="col s12">
-    <h2>Latest posts</h2>
-    <!--Tradition cards-->
-    {% for tradition in traditions %}
-    <div class="card col m4 trad-card">
-        <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="static/images/easter.jpg">
-        </div>
-        <div class="card-content">
-            <div class="col s12">
-                <h3 class="card-title grey-text text-darken-4">{{ tradition.tradition_name.capitalize() }}
-                </h3>
-            </div>
-            <div class="col s12">
-                <h4 class="card-details"><i
-                        class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country.capitalize() }}
-                </h4>
-            </div>
-            <div class="col s12">
-                <h4 class="card-details">
-                    <i class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
-                </h4>
-            </div>
-            <div class="col s12">
-                <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
-                    <i class="fas fa-user right"></i>
-                </h4>
-            </div>
-            <div class="row card-actions">
-                <div class="col s8">
-                    <p><a class="card-details btn-small maroon-outline-button activator" href="#">Read more</a></p>
-                </div>
-                <div class="col s4">
-                    <p><a class="card-details btn-small maroon-button right" href="#"><i class="fas fa-heart"></i></a>
-                    </p>
-                </div>
-            </div>
-            <!--Edit and delete buttons-->
-            {% if session.user|lower == tradition.created_by|lower %}
-            <div class="row card-ud-actions">
-                <div class="col s6">
-                    <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
-                        class="waves-effect btn-small maroon-button"><i class="fas fa-pencil-alt right"></i>Edit</a>
-                </div>
-                <div class="col s6">
-                    <a href="#modal1" class="waves-effect btn-small maroon-button right modal-trigger"><i
-                            class="fas fa-trash-alt right"></i>Delete</a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-        <!--Card reveal-->
-        <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Description
-                <i class="fas fa-times right">
-                    <span class="sr-only">Close</span>
-                </i>
-            </span>
-            <p>{{ tradition.tradition_description.capitalize() }}</p>
-        </div>
+        <h2>We've found matches for your search!</h2>
     </div>
+    <div class="col s12">
+        <!--Tradition cards-->
+        {% for tradition in traditions %}
+        <div class="card col s12 trad-card">
+            <div class="row card-row">
+        <div class="col s12 m4">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="static/images/easter.jpg">
+            </div>
+        </div>
+       <div class="col s12 m8">
+            <div class="card-content">
+                <div class="col s12">
+                    <h3>{{ tradition.tradition_name.capitalize() }}
+                    </h3>
+                </div>
+                <div class="col s12 m4">
+                    <h4 class="card-details"><i
+                            class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country.capitalize() }}
+                    </h4>
+                </div>
+                <div class="col s12 m4">
+                    <h4 class="card-details">
+                        <i
+                            class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
+                    </h4>
+                </div>
+                <div class="col s12 m4">
+                    <h4 class="card-details">
+                        <i class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
+                    </h4>
+                </div>
+                <div class="row card-actions">
+                    <div class="col s12 m4">
+                        <p><a class="card-details btn-small maroon-button activator" href="#">Read more</a></p>
+                    </div>        
+                <!--Edit and delete buttons, if tradition belongs to user-->
+                {% if session.user|lower == tradition.created_by|lower %}
+                <div class="row card-ud-actions">
+                    <div class="col s12 m4">
+                        <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
+                            class="waves-effect btn-small maroon-button"><i class="fas fa-pencil-alt right"></i>Edit</a>
+                    </div>
+                    <div class="col s12 m4">
+                        <a href="#modal1" class="waves-effect btn-small maroon-button right modal-trigger"><i
+                                class="fas fa-trash-alt right"></i>Delete</a>
+                    </div>
+                </div>
+                {% else %}
+                    <!--If tradition does not belong to user-->
+                    <div class="col s12 m6">
+                        <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
+                            <i class="fas fa-user right"></i>
+                        </h4>
+                    </div>
+                    <!--Like button-->
+                    <div class="col s12 m2">
+                        <p><a class="card-details btn-small maroon-button right" href="#"><i
+                                    class="fas fa-heart"></i></a>
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+            <!--Card reveal-->
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Description
+                    <i class="fas fa-times right">
+                        <span class="sr-only">Close</span>
+                    </i>
+                </span>
+                <p>{{ tradition.tradition_description.capitalize() }}</p>
+            </div>
+        </div>
+        </div>
     </div>
     <!-- Modal for delete confirmation -->
     <div id="modal1" class="modal">
@@ -99,5 +128,17 @@
         </div>
     </div>
     {% endfor %}
+    <!--If no search results-->
+    {% else %}
+    <div class="col s12">
+        <h2>We don't have any traditions for that search yet, why not add your own?</h2>
+        <a href="/add_tradition.html" class="maroon-button btn-small">
+            <i class="fas fa-plus-circle left"></i> Add tradition
+        </a>
+    </div>
+</div>
+{% endif %}
+<div>
+    <h2>Newest additions to our traditions</h2>
 </div>
 {% endblock %}

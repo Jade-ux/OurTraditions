@@ -25,6 +25,14 @@ def get_traditions():
     return render_template("traditions.html", traditions=traditions)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    keywords = request.form.get("keywords")
+    countries = request.form.get("countries")
+    traditions = list(mongo.db.traditions.find({"$text":{"$search": keywords}}))
+    return render_template("traditions.html", traditions=traditions)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -109,9 +117,8 @@ def add_tradition():
         tradition = {
             "tradition_name": request.form.get("tradition_name"),
             "category_name": request.form.get("category_name"),
+            "group_name": request.form.get("group_name"),
             "country": request.form.get("country"),
-            # this will allow the function to get multiple elements with the same name attribute, where we are storing an array
-            "keywords": request.form.getlist("keywords"),
             "tradition_description": request.form.get("tradition_description"),
             "created_by": session["user"]
         }
@@ -121,6 +128,7 @@ def add_tradition():
 
     # if method is not POST then revert to the default method which is GET    
     categories = mongo.db.categories.find().sort("category_name", 1)
+    groups = mongo.db.groups.find().sort("group_name", 1)
     return render_template("add_tradition.html", categories=categories)
 
 
@@ -131,10 +139,8 @@ def edit_tradition(tradition_id):
         edit_tradition = {
             "tradition_name": request.form.get("tradition_name"),
             "category_name": request.form.get("category_name"),
+            "group_name": request.form.get("group_name"),
             "country": request.form.get("country"),
-            # this will allow the function to get multiple elements with
-            # the same name attribute, where we are storing an array
-            "keywords": request.form.getlist("keywords"),
             "tradition_description": request.form.get("tradition_description"),
             "created_by": session["user"]
         }
@@ -145,8 +151,9 @@ def edit_tradition(tradition_id):
     # if method is not POST then revert to this default
     tradition = mongo.db.traditions.find_one({"_id": ObjectId(tradition_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
+    groups = mongo.db.groups.find().sort("group_name", 1)
     return render_template(
-        "edit_tradition.html", tradition=tradition, categories=categories)
+        "edit_tradition.html", tradition=tradition, categories=categories, groups=groups)
 
 
 @app.route("/delete_tradition/<tradition_id>")

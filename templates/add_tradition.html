@@ -26,6 +26,19 @@
                 <label for="category_name">Category</label>
             </div>
         </div>
+            <!--Group-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-users prefix maroon"></i>
+                <select id="group_name" name="group_name" class="validate" required>
+                    <option value="" disabled selected>Pick a group</option>
+                    {% for group in groups %}
+                    <option value="{{ group.group_name }}">{{ group.group_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="group_name">Group</label>
+            </div>
+        </div>
     <!--Country-->
         <div class="row">
             <div class="input-field col s12">
@@ -33,13 +46,6 @@
                 <input type="text" id="country" name="country" class="autocomplete validate" required>
                 <label for="country">Choose your country</label>
             </div>
-    <!--Keywords-->
-            <div class="input-field col s12">
-                <i class="fas fa-list prefix maroon"></i>
-                <input id="keywords" name="keywords" minlength="3" maxlength="100" type="text" class="validate" required>
-                <label for="keywords">Add keywords, separated by commas</label>
-            </div>
-        </div>
     <!--Description-->
         <div class="row">
             <div class="input-field col s12">
