@@ -7,7 +7,6 @@
         <p class="white-text">This is a place to share our traditions; whether they are cultural or unique traditions
             practised only among your friends or family. Share yours, browse others and, if you find a tradition someone
             else has added that you do too, click the <i class="fas fa-heart"></i> </p>
-            <!--<p><a href="{{ url_for('upload_image') }}">Go to image upload</a></p>-->
     </div>
     <div class="row">
         <div class="col s12">
@@ -106,7 +105,8 @@
                 </div>
             </div>
         </div>
-            <!--Card reveal-->
+        </div>
+        <!--Card reveal-->
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Description
                     <i class="fas fa-times right">
@@ -115,7 +115,6 @@
                 </span>
                 <p>{{ tradition.tradition_description.capitalize() }}</p>
             </div>
-        </div>
         </div>
     </div>
     <!-- Modal for delete confirmation -->

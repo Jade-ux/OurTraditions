@@ -1,4 +1,5 @@
 import os
+import boto3, botocore
 from flask import (
     Flask, flash, render_template, redirect, 
     request, session, url_for)
@@ -18,6 +19,96 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
+# Amazon S3 for image uploads
+
+S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
+S3_KEY = os.environ.get("S3_ACCESS_KEY")
+S3_SECRET = os.environ.get("S3_SECRET_ACCESS_KEY")
+S3_LOCATION = os.environ.get("S3_LOCATION")
+
+
+"""
+help from https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
+"""
+
+s3 = boto3.client(
+   "s3",
+   aws_access_key_id=S3_KEY,
+   aws_secret_access_key=S3_SECRET
+)
+
+
+# S3 functions for image upload
+
+# this code was inspired by this tutorial: 
+# https://www.youtube.com/watch?v=6WruncSoCdI 
+app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
+app.config["VALID_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
+
+def valid_images(filename):
+    if not "." in filename:
+        return False
+
+    extension = filename.rsplit(".", 1)[1]
+
+    if extension.upper() in app.config["VALID_IMAGE_EXTENSIONS"]:
+        return True
+    else: 
+        return False
+
+
+"""
+From tutorial here: https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
+
+"""
+def upload_image():
+
+    output = ""
+
+    if "trad_image" not in request.files:
+        return output
+
+    file = request.files["trad_image"]
+
+    if file.filename == "":
+       flash("Please select a file")
+       return output
+    
+
+    if file and valid_images(file.filename):
+        file.filename = secure_filename(file.filename)
+       # output = upload_file_to_bucket(file, app.config["S3_BUCKET"])
+        output = upload_file_to_bucket(file, "S3_BUCKET")
+        return str(output)
+
+    else:
+        return redirect("/")
+
+
+def upload_file_to_bucket(file, S3_BUCKET):
+
+    try:
+
+        s3.upload_fileobj(
+            file,
+            S3_BUCKET,
+            file.filename,
+            ExtraArgs={
+                'ACL': 'public-read'
+               # "ContentType": file.content_type
+            }
+        )
+
+    except Exception as e:
+        # Exceptions
+        print("Oops, that didn't work: ", e)
+        return e
+
+    return "{}{}".format(app.config["S3_LOCATION"], file.filename)
+
+
+# Route decorators
 
 @app.route("/")
 @app.route("/get_traditions")
@@ -121,8 +212,8 @@ def add_tradition():
             "group_name": request.form.get("group_name"),
             "country": request.form.get("country"),
             "tradition_description": request.form.get("tradition_description"),
-            "created_by": session["user"]
-            # "image": upload_image()
+            "trad_image": upload_image(),
+            "created_by": session["user"],
         }
         mongo.db.traditions.insert_one(tradition)
         flash("Your tradition has been added!")
@@ -131,46 +222,8 @@ def add_tradition():
     # if method is not POST then revert to the default method which is GET    
     categories = mongo.db.categories.find().sort("category_name", 1)
     groups = mongo.db.groups.find().sort("group_name", 1)
-    return render_template("add_tradition.html", categories=categories)
-
-# this code was inspired by this tutorial: 
-# https://www.youtube.com/watch?v=6WruncSoCdI 
-app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
-app.config["VALID_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
-
-def valid_images(filename):
-    if not "." in filename:
-        return False
-
-    extension = filename.rsplit(".", 1)[1]
-
-    if extension.upper() in app.config["VALID_IMAGE_EXTENSIONS"]:
-        return True
-    else: 
-        return False
-
-
-@app.route("/upload_image", methods=["GET", "POST"])
-def upload_image():
-    if request.method == "POST":
-        if request.files:
-            image = request.files["image"]
-            if image.filename == "":
-                flash("Please choose an image with a filename")
-                return redirect(request.url)
-
-            if not valid_images(image.filename):
-                flash("Please choose an image with a file type of either jpg, jpeg, png or gif")
-                return redirect(request.url)
-
-            else: 
-                filename = secure_filename(image.filename)
-                image.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
-            image.save(os.path.join(
-                app.config["IMAGE_UPLOADS"], image.filename))
-            flash("Your image has been uploaded")
-            return redirect(request.url)
-    return render_template("image_upload.html")
+    return render_template(
+        "add_tradition.html", categories=categories, groups=groups)
 
 
 @app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])
@@ -208,3 +261,21 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+
+
+# this code was inspired by this tutorial: 
+# https://www.youtube.com/watch?v=6WruncSoCdI 
+app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
+app.config["VALID_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
+
+def valid_images(filename):
+    if not "." in filename:
+        return False
+
+    extension = filename.rsplit(".", 1)[1]
+
+    if extension.upper() in app.config["VALID_IMAGE_EXTENSIONS"]:
+        return True
+    else: 
+        return False
+

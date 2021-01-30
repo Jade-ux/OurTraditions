@@ -160,7 +160,7 @@ nav {
     border-radius: 3px;
 }
 
-.maroon-button:hover {
+.maroon-button:hover, .maroon-button:focus, .maroon-button:active {
     background-color: #EF324F;
     color: #fff;
 }
@@ -210,6 +210,11 @@ nav {
     background-color: rgb(4 4 4 / 73%);
     border-right: #b61753 5px solid;
     border-radius: 2px;
+}
+
+.card-image {
+    height: 170px;
+    width: auto;
 }
 
 .hint-text {

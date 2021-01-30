@@ -103,6 +103,7 @@ Why I chose the dark colours
 
 I chose to limit what users can add to the site to their traditions. There is no way to add new countries because I wanted to make sure that the list remained accurate. There is also no way to add new groups or categories as I wanted to keep those lists concise and I believe they cover all groups/categories needed.
 
+<span id="collections"></span>
 The database is called 'ourTraditions' and contains the following collections:
 
 ### Traditions
@@ -223,6 +224,38 @@ If this section grows too long, you may want to split it off into a separate fil
 ## Deployment
 
 This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+
+
+
+**For MongoDB:**
+
+- Use SCRAM method to create a username and password
+- Make sure to not use any special characters in your password 
+- Make sure your user priviledges are set to 'Read and write to the database'.
+- Click 'Add user'
+- In the 'Network access' tab, click 'Add IP address' and then select 'Allow access from anywhere' because you will be accessing the DB from your IDE and Heroku. OR, for added security, restrict this to the IP address of your hosts.
+- Once your cluster has been provisioned click 'collections' and then 'Add My Own Data'.
+- Add your database name and the name of your first collection. 
+- Once your database is created you can add the rest of the collections, [see all the collections you will need here](#collections). 
+- Access your MONGO_URI for your env.py file and Heroku config vars by clicking 'Connect' (in your cluster), then select 'Connect your application', choose Python and the correct version and then copy your connection string
+- Back in your IDE add this to your env.py file and replace `<password>` with your password and `<dbname>` with your database name.
+
+**In Heroku**
+
+1. In Heroku add your config vars (in the 'settings' tab > click 'Reveal config vars')
+
+|**Key**|**Value**|
+|IP|`0.0.0.0`|   
+|PORT|`5000`|
+|SECRET_KEY| `<your secret key from MongoDB>`|
+|MONGO_URI|`<your MongoDB URI>`|
+|MONGO_DBNAME|| `<your database name>`
+|S3_BUCKET|`<your bucket name>`|
+|S3_KEY|`<your S3 bucket key>`|
+|S3_SECRET_ACCESS_KEY|`<your S3 secret key>`|
+|S3_LOCATION|`<your S3 location URL>`|
+
+2. Add your env.py file to your .gitignore file to ensure none of your secret keys are pushed to your repository. 
 
 In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
 - Different values for environment variables (Heroku Config Vars)?
