@@ -20,26 +20,26 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+"""
 # Amazon S3 for image uploads
 
 S3_BUCKET = os.environ.get("S3_BUCKET")
 S3_KEY = os.environ.get("S3_ACCESS_KEY")
 S3_SECRET = os.environ.get("S3_SECRET_ACCESS_KEY")
 S3_LOCATION = os.environ.get("S3_LOCATION")
-
+"""
 
 """
 help from https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
 """
-
+"""
 s3 = boto3.client(
    "s3",
    aws_access_key_id = S3_KEY,
    aws_secret_access_key = S3_SECRET
 )
-
-
+"""
+"""
 # S3 functions for image upload
 
 # this code was inspired by this tutorial: 
@@ -60,8 +60,10 @@ def valid_images(filename):
 
 
 """
+"""
 From tutorial here: https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
 
+"""
 """
 def upload_image():
 
@@ -108,6 +110,7 @@ def upload_file_to_bucket(file, S3_BUCKET):
 
     return "{}{}".format(S3_LOCATION, file.filename)
 
+"""
 
 # Route decorators
 
@@ -213,7 +216,7 @@ def add_tradition():
             "group_name": request.form.get("group_name"),
             "country": request.form.get("country"),
             "tradition_description": request.form.get("tradition_description"),
-            "trad_image": upload_image(),
+           # "trad_image": upload_image(),
             "created_by": session["user"],
         }
         mongo.db.traditions.insert_one(tradition)
