@@ -254,8 +254,9 @@ def add_tradition():
     # if method is not POST then revert to the default method which is GET    
     categories = mongo.db.categories.find().sort("category_name", 1)
     groups = mongo.db.groups.find().sort("group_name", 1)
+    countries = mongo.db.countries.find().sort("country_name", 1)
     return render_template(
-        "add_tradition.html", categories=categories, groups=groups)
+        "add_tradition.html", categories=categories, groups=groups, countries=countries)
 
 
 @app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])

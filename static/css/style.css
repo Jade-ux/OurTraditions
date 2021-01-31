@@ -117,9 +117,9 @@ nav {
     }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1296px) {
     h1 {
-        width: 80%;
+        width: 50%;
     }
     .nav-bar-grey {
     min-height: 150px;
@@ -306,7 +306,6 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     color: #F05A24;
 }
 
-
 .image-upload-field {
     margin-left: 55px;
 }
@@ -315,6 +314,19 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     margin-top: 25px;
 }
 
-#group_name.validate {
-    display: none;
+#group_name.validate, #category_name.validate, #country_name.validate {
+    display: none !important;
+}
+
+
+.select-dropdown.dropdown-content li.selected, .dropdown-content {
+        background-color: #444;
+}
+
+.select-dropdown li.disabled>span {
+    color: #fafafa;
+}
+
+.dropdown-content .select-dropdown {
+    width: 100%;
 }

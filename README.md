@@ -170,6 +170,8 @@ In this section, you should go over the different parts of your project, and des
 
 6. Edit - Allows a logged in user to edit any of the details of a tradition she has created by clicking the 'Edit' button on the tradition card and then changing the details.
 
+7. **Country field** allows users to choose which country they are in when adding a tradition. This will allow users to see which traditions exist in each country.
+
 7. **The delete feature** allows a logged in user to delete any of the traditions she has created by clicking the 'Delete' button on the tradition card. When the 'Delete' button the tradition is not deleted immediately but a modal pops up asking the user to confirm that they wish to delete it. Only once they have confirmed they want to delete the tradition it is deleted.
 
 8. **The read more button on card** reveals the full description of the tradition when the user clicks the 'Read more' link. If the description overflows the height of the card a scroll bar will be visible to allow the user to scroll through the content.
@@ -224,6 +226,8 @@ If this section grows too long, you may want to split it off into a separate fil
 ### Bug fixes
 
 - Add tradition form select field validation - the Materialize select field does not show an error when left blank, this is a known bug that the validation does not work. I fixed this with help from the Tasks Manager project in this course.
+- The materialize class adds a white dot under the form. This is fixed by setting it as 'display: none'
+- The valid_images() function should check the file type and not upload the file if it is not one of the allowed types. It should then not allow the upload, however this is currently not written to handle this. [[[need to expand on this]]]
 
 ## Deployment
 
