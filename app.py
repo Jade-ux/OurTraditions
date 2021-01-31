@@ -1,4 +1,6 @@
 import os
+import boto3, botocore
+from botocore.client import Config
 from flask import (
     Flask, flash, render_template, redirect, 
     request, session, url_for)
@@ -6,9 +8,26 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from io import BytesIO
+from PIL import Image, ImageOps
 if os.path.exists("env.py"):
     import env
 
+# image extensions allowed 
+VALID_IMAGE_EXTENSIONS = ["PNG", "JPG", "JPEG", "GIF"]
+
+
+# Amazon S3 access
+S3_BUCKET = os.environ.get("S3_BUCKET")
+S3_KEY = os.environ.get("S3_ACCESS_KEY")
+S3_SECRET = os.environ.get("S3_SECRET_ACCESS_KEY")
+S3_LOCATION = os.environ.get("S3_LOCATION")
+
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=S3_KEY,
+    aws_secret_access_key=S3_SECRET
+)
 
 app = Flask(__name__)
 
@@ -17,6 +36,108 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
+
+
+# Image upload
+""" Help from:
+Tutorial here:
+https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
+Code with thanks to (slightly modified):
+https://github.com/Edb83/self-isolution/blob/master/app.py
+
+"""
+def valid_images(filename):
+    if not "." in filename:
+        return False
+
+    extension = filename.rsplit(".", 1)[1]
+
+    if extension.upper() in VALID_IMAGE_EXTENSIONS:
+        return True
+    else: 
+        return False
+
+
+def upload_file():
+    """
+    Checks if the file is not empty, and is an allowed file type, if it is, sanitize the file name with Werkzeug's secure_filename and then call upload_file_to_s3(). Return the output and convert to a string that can be saved in Mongo DB 
+
+    """
+    output = ""
+
+    file = request.files["trad_image"]
+
+    if file.filename == "":
+        flash("Please select a file")
+        output = ""
+
+    if not valid_images(file.filename):
+        flash("Your image was not the correct filetype, but that's ok, we'll add one in for you.")
+        output = ""
+
+    else:
+        file.filename = secure_filename(file.filename)
+        output = upload_file_to_s3(file)
+        return str(output)
+
+
+def resize_image(file):
+
+    """ Code with thanks to:
+    https://github.com/Edb83/self-isolution/blob/master/app.py
+
+    """
+    # Load the image received through the submitted form
+    raw_image = Image.open(file)
+
+    # Save its format (as not copied on creation of new image)
+    saved_format = raw_image.format
+
+    # Read EXIF data to handle portrait images being rotated
+    new_image = ImageOps.exif_transpose(raw_image)
+
+    # Reapply raw_image format so that it can be resized
+    new_image.format = saved_format
+
+    # Resize image and set max-length in either axis to 500px
+    new_image.thumbnail((500, 500))
+
+    # Save the image to an in-memory file
+    in_mem_file = BytesIO()
+    new_image.save(in_mem_file, format=new_image.format)
+
+    # 'Rewind' the file-like object to prevent 0kb-sized files
+    in_mem_file.seek(0)
+
+    return in_mem_file
+
+
+def upload_file_to_s3(file):
+    """ Help from:
+    Tutorial here:
+    https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
+    And:
+    https://github.com/Edb83/self-isolution/blob/master/app.py
+
+    """
+    try:
+        image_for_upload = resize_image(file)
+
+        # Upload image to s3
+        s3.upload_fileobj(
+            image_for_upload,
+            S3_BUCKET,
+            file.filename,
+            ExtraArgs={
+                'ACL': 'public-read'
+            }
+        )
+
+    except Exception as e:
+        print("Oops, that didn't work: ", e)
+        return e
+
+    return "{}{}".format(S3_LOCATION, file.filename)
 
 
 # Route decorators
@@ -123,7 +244,7 @@ def add_tradition():
             "group_name": request.form.get("group_name"),
             "country": request.form.get("country"),
             "tradition_description": request.form.get("tradition_description"),
-           # "trad_image": upload_image(),
+            "trad_image": upload_file(),
             "created_by": session["user"],
         }
         mongo.db.traditions.insert_one(tradition)

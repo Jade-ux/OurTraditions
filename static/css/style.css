@@ -305,3 +305,16 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 .dropdown-content li>span {
     color: #F05A24;
 }
+
+
+.image-upload-field {
+    margin-left: 55px;
+}
+
+.add-trad-button-col {
+    margin-top: 25px;
+}
+
+#group_name.validate {
+    display: none;
+}
