@@ -275,12 +275,15 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 2. Create a bucket 
 3. Under your name (top right of the management console) click 'My security credentials' Open 'Access keys...'
 3. Click 'Create New Access Key'.
-4. Save the file to your computer - you will need those access keys later
+4. Save the file to your computer
+5. From the main menu select 'IAM' and then 'Create new user'
 5. In your app install boto3: <code>pip install flask boto3</code>
 
 ## Credits
 
 - [This tutorial helped me build an image uploader](https://www.youtube.com/watch?v=6WruncSoCdI)
+- [Documentation for how to create an Amazon AWS policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-policies-s3.html#iam-policy-ex4)
+- [To set up my Amazon account I used this tutorial.](https://www.youtube.com/watch?v=v33Kl-Kx30o)
 
 
 ### Content

@@ -1,5 +1,6 @@
 import os
 import boto3, botocore
+from botocore.client import Config
 from flask import (
     Flask, flash, render_template, redirect, 
     request, session, url_for)
@@ -22,7 +23,7 @@ mongo = PyMongo(app)
 
 # Amazon S3 for image uploads
 
-S3_BUCKET = os.environ.get("S3_BUCKET_NAME")
+S3_BUCKET = os.environ.get("S3_BUCKET")
 S3_KEY = os.environ.get("S3_ACCESS_KEY")
 S3_SECRET = os.environ.get("S3_SECRET_ACCESS_KEY")
 S3_LOCATION = os.environ.get("S3_LOCATION")
@@ -34,8 +35,8 @@ help from https://www.zabana.me/notes/flask-tutorial-upload-files-amazon-s3
 
 s3 = boto3.client(
    "s3",
-   aws_access_key_id=S3_KEY,
-   aws_secret_access_key=S3_SECRET
+   aws_access_key_id = S3_KEY,
+   aws_secret_access_key = S3_SECRET
 )
 
 
@@ -43,8 +44,8 @@ s3 = boto3.client(
 
 # this code was inspired by this tutorial: 
 # https://www.youtube.com/watch?v=6WruncSoCdI 
-app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
-app.config["VALID_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
+# app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
+VALID_IMAGE_EXTENSIONS = ["PNG", "JPG", "JPEG", "GIF"]
 
 def valid_images(filename):
     if not "." in filename:
@@ -52,7 +53,7 @@ def valid_images(filename):
 
     extension = filename.rsplit(".", 1)[1]
 
-    if extension.upper() in app.config["VALID_IMAGE_EXTENSIONS"]:
+    if extension.upper() in VALID_IMAGE_EXTENSIONS:
         return True
     else: 
         return False
@@ -105,7 +106,7 @@ def upload_file_to_bucket(file, S3_BUCKET):
         print("Oops, that didn't work: ", e)
         return e
 
-    return "{}{}".format(app.config["S3_LOCATION"], file.filename)
+    return "{}{}".format(S3_LOCATION, file.filename)
 
 
 # Route decorators
@@ -261,21 +262,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-
-
-# this code was inspired by this tutorial: 
-# https://www.youtube.com/watch?v=6WruncSoCdI 
-app.config["IMAGE_UPLOADS"] = "/workspace/OurTraditions/static/images/uploads"
-app.config["VALID_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
-
-def valid_images(filename):
-    if not "." in filename:
-        return False
-
-    extension = filename.rsplit(".", 1)[1]
-
-    if extension.upper() in app.config["VALID_IMAGE_EXTENSIONS"]:
-        return True
-    else: 
-        return False
 
