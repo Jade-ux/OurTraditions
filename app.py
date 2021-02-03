@@ -142,19 +142,74 @@ def upload_file_to_s3(file):
 
 # Route decorators
 
+"""
+Creates the list of countries 
+"""
+# def unique_countries():
+    # traditions = list(mongo.db.traditions.find())
+    # for tradition in traditions:
+        # return country_name
+
+
 @app.route("/")
 @app.route("/get_traditions")
 def get_traditions():
     traditions = list(mongo.db.traditions.find())
-    return render_template("traditions.html", traditions=traditions)
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    groups = mongo.db.groups.find().sort("group_name", 1)
+    return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     keywords = request.form.get("keywords")
-    countries = request.form.get("countries")
-    traditions = list(mongo.db.traditions.find({"$text":{"$search": keywords}}))
-    return render_template("traditions.html", traditions=traditions)
+    if keywords == "":
+        flash("Please enter a keyword")
+        traditions = list(mongo.db.traditions.find())
+        return render_template("traditions.html", traditions=traditions)
+    else:
+        traditions = list(
+            mongo.db.traditions.find({"$text":{"$search": keywords}}))
+        return render_template("traditions.html", traditions=traditions)
+
+
+@app.route("/search_country", methods=["GET", "POST"])
+def search_country():
+    country = request.form.get("country")
+    if country == "":
+        flash("Please enter a country")
+        traditions = list(mongo.db.traditions.find())
+        return render_template("traditions.html", traditions=traditions)
+    else:
+        traditions = list(
+            mongo.db.traditions.find({"$text":{"$search": country}}))
+        return render_template("traditions.html", traditions=traditions)
+
+
+@app.route("/search_category", methods=["GET", "POST"])
+def search_category():
+    category = request.form.get("category")
+    if category == "":
+        flash("Please enter a category")
+        traditions = list(mongo.db.traditions.find())
+        return render_template("traditions.html", traditions=traditions)
+    else:
+        traditions = list(
+            mongo.db.traditions.find({"$text":{"$search": category}}))
+        return render_template("traditions.html", traditions=traditions)
+
+
+@app.route("/search_group", methods=["GET", "POST"])
+def search_group():
+    group = request.form.get("group")
+    if group == "":
+        flash("Please enter a group")
+        traditions = list(mongo.db.traditions.find())
+        return render_template("traditions.html", traditions=traditions)
+    else:
+        traditions = list(
+            mongo.db.traditions.find({"$text":{"$search": group}}))
+        return render_template("traditions.html", traditions=traditions)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -242,7 +297,7 @@ def add_tradition():
             "tradition_name": request.form.get("tradition_name"),
             "category_name": request.form.get("category_name"),
             "group_name": request.form.get("group_name"),
-            "country": request.form.get("country"),
+            "country_name": request.form.get("country_name"),
             "tradition_description": request.form.get("tradition_description"),
             "trad_image": upload_file(),
             "created_by": session["user"],
@@ -267,7 +322,7 @@ def edit_tradition(tradition_id):
             "tradition_name": request.form.get("tradition_name"),
             "category_name": request.form.get("category_name"),
             "group_name": request.form.get("group_name"),
-            "country": request.form.get("country"),
+            "country_name": request.form.get("country_name"),
             "tradition_description": request.form.get("tradition_description"),
             "created_by": session["user"]
         }
@@ -279,8 +334,9 @@ def edit_tradition(tradition_id):
     tradition = mongo.db.traditions.find_one({"_id": ObjectId(tradition_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     groups = mongo.db.groups.find().sort("group_name", 1)
+    countries = mongo.db.countries.find().sort("country_name", 1)
     return render_template(
-        "edit_tradition.html", tradition=tradition, categories=categories, groups=groups)
+        "edit_tradition.html", tradition=tradition, categories=categories, groups=groups, countries=countries)
 
 
 @app.route("/delete_tradition/<tradition_id>")
@@ -288,6 +344,7 @@ def delete_tradition(tradition_id):
     mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
     flash("Your tradition has been deleted.")
     return redirect(url_for("get_traditions"))
+    # I need a 'remove image from S3 action
 
 
 if __name__ == "__main__":

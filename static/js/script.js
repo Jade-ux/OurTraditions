@@ -3,15 +3,7 @@
     $('.tooltipped').tooltip();
      $('select').formSelect();
      $('.modal').modal();
-     //Country autocomplete for the add-tradition page
-      $('input.autocomplete').autocomplete({
-      data: {
-        "Afganistan": null,
-        "Albania": null,
-        "Algeria": null,
-      },
-      minlength: 1, 
-    });
+     $('.collapsible').collapsible();
     // creates validation for the Materialize selector elements
     // code from the Task Manager app created as part of the course
     validateMaterializeSelect();
