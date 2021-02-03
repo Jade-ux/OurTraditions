@@ -197,6 +197,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
 
 - Pillow
 - boto3
+- [WTForms]('https://flask-wtf.readthedocs.io/en/stable/install.html') - used for checking onKeyUp events
 
 
 - [JQuery](https://jquery.com)

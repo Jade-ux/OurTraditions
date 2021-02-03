@@ -163,53 +163,61 @@ def get_traditions():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     keywords = request.form.get("keywords")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    groups = mongo.db.groups.find().sort("group_name", 1)
     if keywords == "":
         flash("Please enter a keyword")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
     else:
         traditions = list(
             mongo.db.traditions.find({"$text":{"$search": keywords}}))
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
 
 
 @app.route("/search_country", methods=["GET", "POST"])
 def search_country():
     country = request.form.get("country")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    groups = mongo.db.groups.find().sort("group_name", 1)
     if country == "":
         flash("Please enter a country")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
     else:
         traditions = list(
             mongo.db.traditions.find({"$text":{"$search": country}}))
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
 
 
 @app.route("/search_category", methods=["GET", "POST"])
 def search_category():
+    groups = mongo.db.groups.find().sort("group_name", 1)
+    categories = mongo.db.categories.find().sort("category_name", 1)
     category = request.form.get("category")
     if category == "":
         flash("Please enter a category")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
     else:
         traditions = list(
             mongo.db.traditions.find({"$text":{"$search": category}}))
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
 
 
 @app.route("/search_group", methods=["GET", "POST"])
 def search_group():
     group = request.form.get("group")
+    groups = mongo.db.groups.find().sort("group_name", 1)
+    categories = mongo.db.categories.find().sort("category_name", 1)
     if group == "":
         flash("Please enter a group")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
     else:
         traditions = list(
             mongo.db.traditions.find({"$text":{"$search": group}}))
-        return render_template("traditions.html", traditions=traditions)
+        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
 
 
 @app.route("/register", methods=["GET", "POST"])
