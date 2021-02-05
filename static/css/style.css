@@ -83,7 +83,7 @@ h4 {
 /*-------------------------------------------------Navigation*/
 
 .nav-bar-grey{
-    background-color: #07090c;
+    background-color: rgb(0 0 0 / 35%);
     min-height: 130px;
 }
 
@@ -214,9 +214,17 @@ nav {
     border-radius: 2px;
 }
 
-.card-image {
-    height: 170px;
+.card .card-image img {
     width: auto;
+}
+
+.card-image {
+    height: 200px;
+}
+
+.card .card-content {
+    padding-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .hint-text {
@@ -260,6 +268,23 @@ nav {
     width: 31.3333333333%;
 }
 
+.read-more-link {
+    color: snow;
+    text-decoration: underline;
+}
+
+.card .card-reveal {
+    background-color: #000;
+}
+
+.card-title {
+    color: snow;
+}
+
+.card-description {
+    color: snow;
+}
+
 @media only screen and (max-width: 769px) {
     .card.col.m4.trad-card {
     width: 100%;
@@ -280,7 +305,7 @@ nav {
 /*-------------------------------------------------Forms*/
 
 .overlay-row {
-    background-color: rgb(0 0 0 / 56%);
+    background-color: rgb(0 0 0 / 35%);
     padding: 20px;
 }
 

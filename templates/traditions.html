@@ -63,8 +63,8 @@
                             <div class="col s12 m8">
                                 <select id="category" name="category" class="validate" required>
                                     <option value="" disabled selected>Select category</option>
-                                    {% for category in categories %}
-                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                    {% for tradition in traditions %}
+                                    <option value="{{ tradition.category_name }}">{{ tradition.category_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -87,8 +87,8 @@
                             <div class="col s12 m8">
                                 <select id="group" name="group" class="validate" required>
                                     <option value="" disabled selected>Select group</option>
-                                    {% for group in groups %}
-                                    <option value="{{ group.group_name }}">{{ group.group_name }}</option>
+                                    {% for tradition in traditions %}
+                                    <option value="{{ tradition.group_name }}">{{ tradition.group_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -124,15 +124,16 @@
                 <div class="row card-row">
                     <div class="col s12 m4">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="" src="{{ tradition.trad_image }}" alt="{{ tradition.tradition_name }}">
+                            <img class="card-img" src="{{ tradition.trad_image }}" alt="{{ tradition.tradition_name }}">
                         </div>
                     </div>
                     <div class="col s12 m8">
-                        <div class="card-content">
+                        <div class="card-content row">
                             <div class="col s12">
                                 <h3>{{ tradition.tradition_name.capitalize() }}
                                 </h3>
                             </div>
+                            <div class="row">
                             <div class="col s12 m4">
                                 <h4 class="card-details"><i
                                         class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
@@ -150,9 +151,10 @@
                                         class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
                                 </h4>
                             </div>
+                        </div>
                             <div class="row card-actions">
                                 <div class="col s12 m4">
-                                    <p><button class="card-details btn-small maroon-button activator">Read more</button>
+                                    <p><a class="card-details activator read-more-link">Read more ></a>
                                     </p>
                                 </div>
                                 <!--Edit and delete buttons, if tradition belongs to user-->
@@ -189,12 +191,12 @@
                 </div>
                 <!--Card reveal-->
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Description
+                    <span class="card-title">{{ tradition.tradition_name.capitalize() }}
                         <i class="fas fa-times right">
                             <span class="sr-only">Close</span>
                         </i>
                     </span>
-                    <p>{{ tradition.tradition_description.capitalize() }}</p>
+                    <p class="card-description">{{ tradition.tradition_description.capitalize() }}</p>
                 </div>
             </div>
         </div>
