@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row overlay-row">
-    <div class="col s12">
-        <h2>Browse & share</h2>
-        <p class="white-text">This is a place to share our traditions; whether they are cultural or unique traditions
-            practised only among your friends or family. Share yours, browse others and, if you find a tradition someone
-            else has added that you do too, click the <i class="fas fa-heart"></i> </p>
+<div class="row">
+    <!--Intro section-->
+    <div class="row">
+        <div class="col s12">
+            <h2>Browse & share</h2>
+            <p class="white-text">This is a place to share our traditions; whether they are cultural or unique
+                traditions
+                practised only among your friends or family. Share yours, browse others and, if you find a tradition
+                someone
+                else has added that you do too, click the <i class="fas fa-heart"></i> </p>
+        </div>
     </div>
+    <!--Search accordions-->
     <div class="row accordion-row">
         <ul class="collapsible">
             <li>
@@ -18,7 +24,8 @@
                     <div class="row">
                         <form action="{{ url_for('search') }}" method="post">
                             <div class="col s12 m8">
-                                <input type="text" id="keywords" name="keywords" placeholder="Keywords" minlength="3">
+                                <input type="text" id="keywords" name="keywords" placeholder="Keywords" minlength="3"
+                                    required>
                             </div>
                             <div class="col s12 m4 right">
                                 <button type="submit" class="maroon-button btn-small right">
@@ -39,8 +46,8 @@
                             <div class="col s12 m8">
                                 <select id="country" name="country" class="validate" required>
                                     <option value="" disabled selected>Select country</option>
-                                    {% for tradition in traditions %}
-                                    <option value="{{ tradition.country_name }}">{{ tradition.country_name }}</option>
+                                    {% for country in countries_list %}
+                                    <option value="{{ country }}">{{ country }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -63,8 +70,8 @@
                             <div class="col s12 m8">
                                 <select id="category" name="category" class="validate" required>
                                     <option value="" disabled selected>Select category</option>
-                                    {% for tradition in traditions %}
-                                    <option value="{{ tradition.category_name }}">{{ tradition.category_name }}</option>
+                                    {% for category in categories_list %}
+                                    <option value="{{ category }}">{{ category }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -87,8 +94,8 @@
                             <div class="col s12 m8">
                                 <select id="group" name="group" class="validate" required>
                                     <option value="" disabled selected>Select group</option>
-                                    {% for tradition in traditions %}
-                                    <option value="{{ tradition.group_name }}">{{ tradition.group_name }}</option>
+                                    {% for group in groups_list %}
+                                    <option value="{{ group }}">{{ group }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -103,13 +110,11 @@
             </li>
         </ul>
     </div>
+    <!--Reset button-->
     <div class="row">
         <div class="col s12 add-trad-button-col center">
             <a href="{{ url_for('get_traditions') }}" class="orange-button btn-small">Reset</a>
         </div>
-    </div>
-    <div class="col s12">
-        <p style="color: white"></p>
     </div>
     <!--Search results-->
     <div class="row">
@@ -134,24 +139,24 @@
                                 </h3>
                             </div>
                             <div class="row">
-                            <div class="col s12 m4">
-                                <h4 class="card-details"><i
-                                        class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
-                                </h4>
+                                <div class="col s12 m4">
+                                    <h4 class="card-details"><i
+                                            class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
+                                    </h4>
+                                </div>
+                                <div class="col s12 m4">
+                                    <h4 class="card-details">
+                                        <i
+                                            class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
+                                    </h4>
+                                </div>
+                                <div class="col s12 m4">
+                                    <h4 class="card-details">
+                                        <i
+                                            class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
+                                    </h4>
+                                </div>
                             </div>
-                            <div class="col s12 m4">
-                                <h4 class="card-details">
-                                    <i
-                                        class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
-                                </h4>
-                            </div>
-                            <div class="col s12 m4">
-                                <h4 class="card-details">
-                                    <i
-                                        class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
-                                </h4>
-                            </div>
-                        </div>
                             <div class="row card-actions">
                                 <div class="col s12 m4">
                                     <p><a class="card-details activator read-more-link">Read more ></a>
@@ -228,4 +233,5 @@
     <h2>Newest additions to our traditions</h2>
 </div>
 -->
-    {% endblock %}
+</div>
+{% endblock %}
