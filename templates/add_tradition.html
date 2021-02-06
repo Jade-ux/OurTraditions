@@ -5,15 +5,16 @@
 <!--Form-->
 <div class="row">
     <form class="col s12" method="POST" enctype="multipart/form-data" action="{{ url_for('add_tradition') }}">
-    <!--Tradition name-->
+        <!--Tradition name-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-heading prefix maroon"></i>
-                <input id="tradition_name" name="tradition_name" minlength="3" maxlength="50" type="text" class="validate" required>
+                <input id="tradition_name" name="tradition_name" minlength="3" maxlength="50" type="text"
+                    class="validate" required>
                 <label for="tradition_name">Give your tradition a name</label>
             </div>
         </div>
-    <!--Category-->
+        <!--Category-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-folder-open prefix maroon"></i>
@@ -26,12 +27,12 @@
                 <label for="category_name">Category</label>
             </div>
         </div>
-            <!--Group-->
+        <!--Group-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-users prefix maroon"></i>
                 <select id="group_name" name="group_name" class="validate" required>
-                    <option value="" disabled selected>Pick a group</option>
+                    <option value="" disabled selected>Who does this?</option>
                     {% for group in groups %}
                     <option value="{{ group.group_name }}">{{ group.group_name }}</option>
                     {% endfor %}
@@ -39,7 +40,7 @@
                 <label for="group_name">Group</label>
             </div>
         </div>
-    <!--Country-->
+        <!--Country-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-globe-africa prefix maroon"></i>
@@ -52,28 +53,30 @@
                 <label for="country">Choose your country</label>
             </div>
         </div>
-    <!--Description-->
+        <!--Description-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-comment-dots prefix maroon"></i>
-                <textarea id="tradition_description" name="tradition_description" minlength="10" maxlength="300" class="materialize-textarea validate add-trad-text-area" required></textarea>
-                <label for="tradition_description">Description</label>
+                <textarea id="tradition_description" name="tradition_description" minlength="10" maxlength="300"
+                    class="materialize-textarea validate add-trad-text-area" required></textarea>
+                <label for="tradition_description">Describe your tradition</label>
             </div>
         </div>
-    <!--Upload image-->
+        <!--Upload image-->
         <div class="row">
-            <div input-field col s12>
-                    <input type="file" name="trad_image" id="trad_image" accept=".jpg, .jpeg, .png, .gif" class="validate image-upload-field" required>
+            <div class="col s12">
+                <label for="trad_image" class="image-upload-label">Upload an image for your tradition</label>
             </div>
             <div class="input-field col s12">
-                <i class="fas fa-image prefix maroon"></i> 
-                <label for="trad_image">Upload an image here</label>
+                <i class="fas fa-image prefix maroon"></i> <input type="file" name="trad_image" id="trad_image"
+                    accept=".jpg, .jpeg, .png, .gif" class="validate image-upload-field" required>
             </div>
         </div>
-    <!--Submit button-->
+        <!--Submit button-->
         <div class="row">
-            <div class="col s12 add-trad-button-col center">
-                <button type="submit" class="btn-large maroon-button">Add tradition <i class="fas fa-plus-circle right"></i></button> 
+            <div class="col s12 center">
+                <button type="submit" class="btn-large maroon-button">Add tradition <i
+                        class="fas fa-plus-circle right"></i></button>
             </div>
         </div>
     </form>

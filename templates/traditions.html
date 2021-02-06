@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="row">
     <!--Intro section-->
     <div class="row">
         <div class="col s12">
@@ -10,7 +9,7 @@
                 traditions
                 practised only among your friends or family. Share yours, browse others and, if you find a tradition
                 someone
-                else has added that you do too, click the <i class="fas fa-heart"></i> </p>
+                else has added that you do too, click the <i class="fas fa-heart"></i></p>
         </div>
     </div>
     <!--Search accordions-->
@@ -111,20 +110,16 @@
         </ul>
     </div>
     <!--Reset button-->
-    <div class="row">
         <div class="col s12 add-trad-button-col center">
             <a href="{{ url_for('get_traditions') }}" class="orange-button btn-small">Reset</a>
         </div>
-    </div>
     <!--Search results-->
-    <div class="row">
         {% if traditions|length > 0 %}
-        <div class="col s12">
-            <h2>Traditions</h2>
-        </div>
-        <div class="row">
+            <div class="col s12">
+                <h2>Traditions</h2>
+            </div>
             <!--Tradition cards-->
-            {% for tradition in traditions %}
+                {% for tradition in traditions %}
             <div class="card col s12 trad-card">
                 <div class="row card-row">
                     <div class="col s12 m4">
@@ -204,7 +199,6 @@
                     <p class="card-description">{{ tradition.tradition_description.capitalize() }}</p>
                 </div>
             </div>
-        </div>
         <!-- Modal for delete confirmation -->
         <div id="modal1" class="modal">
             <div class="modal-content">
@@ -217,21 +211,16 @@
                     class="modal-close waves-effect waves-green btn-flat">Yes, delete!</a>
             </div>
         </div>
-        {% endfor %}
+                {% endfor %}
         <!--If no search results-->
         {% else %}
+        <div class="row">
         <div class="col s12">
             <h2>We don't have any traditions for that search yet, why not add your own?</h2>
             <a href="/add_tradition.html" class="maroon-button btn-small">
                 <i class="fas fa-plus-circle left"></i> Add tradition
             </a>
         </div>
-    </div>
+        </div>
     {% endif %}
-    <!--
-<div>
-    <h2>Newest additions to our traditions</h2>
-</div>
--->
-</div>
 {% endblock %}
