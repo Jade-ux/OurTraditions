@@ -97,7 +97,7 @@ nav {
     font-size: 1.1rem;
     color: #F9A42C;
     padding: 7.5px 0px 0 15px;
-    font-weight: 400
+    font-weight: 400;
 }
 
 #mobile-demo {
@@ -119,11 +119,16 @@ nav {
 
 @media only screen and (max-width: 1296px) {
     h1 {
-        width: 50%;
+       font-size: 2.5rem
     }
     .nav-bar-grey {
     min-height: 150px;
     }
+
+    .nav-items-desktop {
+    top: 30px;
+    position: relative;
+}
 }
 
 /*-------------------------------------------------Colours*/
