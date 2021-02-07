@@ -171,6 +171,12 @@ nav {
     margin-right: 5px;
 }
 
+@media only screen and (max-width: 769px) {
+    .maroon-button {
+        margin-bottom: 10px;
+    }
+}
+
 .maroon-button:hover, .maroon-button:focus, .maroon-button:active {
     background-color: #EF324F;
     color: #fff;
@@ -285,7 +291,7 @@ nav {
     width: 31.3333333333%;
 }
 
-.read-more-link {
+.read-more-link a {
     color: snow;
     text-decoration: underline;
 }
@@ -304,13 +310,17 @@ nav {
 
 @media only screen and (max-width: 769px) {
     .card.col.m4.trad-card {
-    width: 100%;
+        width: 100%;
     }
 
     .card {
-    border-bottom: #b61753 5px solid;
-    border-right: none;
-}
+        border-bottom: #b61753 5px solid;
+        border-right: none;
+    }
+
+    .read-more-link {
+        margin-bottom: 15px;
+    }
 }
 
 /*-------------------------------------------------Icons*/

@@ -198,6 +198,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
 - Pillow
 - boto3
 - [WTForms]('https://flask-wtf.readthedocs.io/en/stable/index.html') - used for checking onKeyUp events
+- Time - Python module used to add a timestamp to each tradition added
 
 
 - [JQuery](https://jquery.com)

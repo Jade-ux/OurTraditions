@@ -10,6 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from io import BytesIO
 from PIL import Image, ImageOps
+import time
 if os.path.exists("env.py"):
     import env
 
@@ -142,14 +143,19 @@ def upload_file_to_s3(file):
 
 # Route decorators
 
+def getDate(time):
+    return time["created_date"]
+    
+
 @app.route("/")
 @app.route("/get_traditions")
 def get_traditions():
     traditions = list(mongo.db.traditions.find())
+    traditions_list = list(mongo.db.traditions.find().sort("created_date", -1))
     categories_list = mongo.db.traditions.distinct("category_name")
     countries_list = mongo.db.traditions.distinct("country_name")
     groups_list = mongo.db.traditions.distinct("group_name")
-    return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+    return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list, traditions_list=traditions_list)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -295,6 +301,7 @@ def logout():
 
 @app.route("/add_tradition", methods=["GET", "POST"])
 def add_tradition():
+    now = time.time()
     if request.method == "POST":
         # collects the form fields and creates a dictionary
         tradition = {
@@ -305,6 +312,7 @@ def add_tradition():
             "tradition_description": request.form.get("tradition_description"),
             "trad_image": upload_file(),
             "created_by": session["user"],
+            "created_date": now,
             # "vote_count": 0,
         }
         mongo.db.traditions.insert_one(tradition)
