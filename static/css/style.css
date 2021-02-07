@@ -75,6 +75,14 @@ h4 {
     margin-top: 0.2rem;
 }
 
+h5 {
+    font-size: 0.8rem;
+    color: snow;
+    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 0.2rem;
+}
+
 #search {
     color: #fff;
     margin-top: 20px;
@@ -111,7 +119,7 @@ nav {
 @media only screen and (max-width: 769px) {
     .nav-bar-grey{
         min-height: 190px;
-}
+    }
     nav.brand-logo{
     left: 30%;
     }
@@ -121,14 +129,11 @@ nav {
     h1 {
        font-size: 2.5rem
     }
-    .nav-bar-grey {
-    min-height: 150px;
-    }
 
     .nav-items-desktop {
     top: 30px;
     position: relative;
-}
+    }
 }
 
 /*-------------------------------------------------Colours*/
@@ -238,12 +243,8 @@ nav {
 }
 
 .hint-text {
-    font-size: 0.8rem;
-}
-
-.hint-text {
-    color: #4c4b4b;
-    font-size: 0.8rem;
+    color: snow;
+    font-size: 0.9rem;
     padding-left: 45px;
 }
 
@@ -330,11 +331,13 @@ nav {
     height: 35px;
 }
 
-/*
 input, textarea {
     color: #fff;
 }
-*/
+
+#username, #password {
+    color: #000;
+}
 
 #tradition-description {
     height: auto;
