@@ -28,6 +28,7 @@ body {
 body {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
+    font-size: 1rem;
 }
 
 .flashed-messsages {
@@ -37,7 +38,7 @@ body {
 }
 
 .feature-image img{
-   width: 80%;
+   width: 100%;
 }
 
 @media only screen and (max-width: 991px){
@@ -68,6 +69,9 @@ h2 {
     color: #F68931;
     font-weight: 300;
     font-family: 'Raleway', sans-serif;
+}
+
+.add-trads-header {
     margin: 0.3733333333rem 0 1.424rem 0;
 }
 
@@ -98,6 +102,10 @@ h5 {
 #search {
     color: #fff;
     margin-top: 20px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
 }
 
 /*-------------------------------------------------Navigation*/
