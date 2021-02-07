@@ -142,15 +142,6 @@ def upload_file_to_s3(file):
 
 # Route decorators
 
-"""
-Creates the list of countries 
-"""
-# def unique_countries():
-    # traditions = list(mongo.db.traditions.find())
-    # for tradition in traditions:
-        # return country_name
-
-
 @app.route("/")
 @app.route("/get_traditions")
 def get_traditions():
@@ -314,6 +305,7 @@ def add_tradition():
             "tradition_description": request.form.get("tradition_description"),
             "trad_image": upload_file(),
             "created_by": session["user"],
+            # "vote_count": 0,
         }
         mongo.db.traditions.insert_one(tradition)
         flash("Your tradition has been added!")

@@ -272,8 +272,8 @@ nav {
     padding: 35px;
 }
 */
-.row.card-actions {
-    margin: 1rem 0 1rem 0;
+.card-actions {
+    margin-top: 0.9rem;
 }
 
 .row.card-ud-actions {
@@ -330,9 +330,11 @@ nav {
     height: 35px;
 }
 
+/*
 input, textarea {
     color: #fff;
 }
+*/
 
 #tradition-description {
     height: auto;
@@ -369,12 +371,10 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     margin-top: 25px;
 }
 
-
 #group_name.validate, #category_name.validate, #country_name.validate, #country.validate, #category.validate, #group.validate {
     border: 1px solid #000000;
     background-color: #000;
 }
-
 
 .select-dropdown.dropdown-content li.selected, .dropdown-content {
         background-color: #0c0c0c;

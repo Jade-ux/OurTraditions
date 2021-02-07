@@ -133,59 +133,56 @@
                                 <h3>{{ tradition.tradition_name.capitalize() }}
                                 </h3>
                             </div>
-                            <div class="row">
-                                <div class="col s12 m4">
-                                    <h4 class="card-details"><i
+                                <div class="col s12 m4 card-actions">
+                                    <h4><i
                                             class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
                                     </h4>
                                 </div>
-                                <div class="col s12 m4">
-                                    <h4 class="card-details">
+                                <div class="col s12 m4 card-actions">
+                                    <h4>
                                         <i
                                             class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
                                     </h4>
                                 </div>
-                                <div class="col s12 m4">
-                                    <h4 class="card-details">
+                                <div class="col s12 m4 card-actions">
+                                    <h4>
                                         <i
                                             class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
                                     </h4>
                                 </div>
-                            </div>
-                            <div class="row card-actions">
-                                <div class="col s12 m4">
+                                <div class="col s12 m4 card-actions">
                                     <p><a class="card-details activator read-more-link">Read more ></a>
                                     </p>
                                 </div>
                                 <!--Edit and delete buttons, if tradition belongs to user-->
                                 {% if session.user|lower == tradition.created_by|lower %}
                                 <div class="row card-ud-actions">
-                                    <div class="col s12 m4">
+                                    <div class="col s12 m4 card-actions">
                                         <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
                                             class="waves-effect btn-small maroon-button"><i
                                                 class="fas fa-pencil-alt right"></i>Edit</a>
                                     </div>
-                                    <div class="col s12 m4">
+                                    <div class="col s12 m4 card-actions">
                                         <a href="#modal1"
-                                            class="waves-effect btn-small maroon-button right modal-trigger"><i
-                                                class="fas fa-trash-alt right"></i>Delete</a>
+                                            class="waves-effect btn-small maroon-button left modal-trigger"><i
+                                                class="fas fa-trash-alt left"></i>Delete</a>
                                     </div>
                                 </div>
                                 {% else %}
                                 <!--If tradition does not belong to user-->
-                                <div class="col s12 m6">
+                                <div class="col s12 m8 card-actions">
                                     <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
                                         <i class="fas fa-user right"></i>
                                     </h4>
                                 </div>
                                 <!--Like button-->
-                                <div class="col s12 m2">
-                                    <p><a class="card-details btn-small maroon-button right" href="#"><i
-                                                class="fas fa-heart"></i></a>
-                                    </p>
-                                </div>
+                                <!--
+                                <div class="col s12 m2 card-actions">
+                                    <a class="btn-small maroon-button right" href="#"><h4><i
+                                                class="fas fa-heart"></i>
+                                            </h4></a>
+                                </div>-->
                                 {% endif %}
-                            </div>
                         </div>
                     </div>
                 </div>
