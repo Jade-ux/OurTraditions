@@ -265,7 +265,7 @@ def login():
                 return redirect(url_for("login"))
 
         else:
-             # if username doesn't exist
+            # if username doesn't exist
             flash("The username/password you entered is incorrect, please try again")
             return redirect(url_for("login")) 
 
@@ -276,14 +276,18 @@ def login():
 @app.route("/user_profile/<username>", methods=["GET", "POST"])
 def profile(username):
     traditions = list(mongo.db.traditions.find())
-    # get the session user's username from the database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    if session["user"]:
-        return render_template(
-            "user_profile.html", username=username, traditions=traditions)
-
-    return redirect(url_for("login"))
+    # checks if user is logged in before taking them to the profile
+    if "user" not in session:
+        flash("Please log in to view your profile")
+        return redirect(url_for("login"))
+        
+    else:
+        if session["user"]:
+            # get the session user's username from the database
+            username = mongo.db.users.find_one(
+                {"username": session["user"]})["username"]
+            return render_template(
+                "user_profile.html", username=username, traditions=traditions)
 
 
 @app.route("/logout")
@@ -322,35 +326,62 @@ def add_tradition():
 
 @app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])
 def edit_tradition(tradition_id):
-    if request.method == "POST":
-        # collects the form fields and creates a dictionary
-        edit_tradition = {
-            "tradition_name": request.form.get("tradition_name"),
-            "category_name": request.form.get("category_name"),
-            "group_name": request.form.get("group_name"),
-            "country_name": request.form.get("country_name"),
-            "tradition_description": request.form.get("tradition_description"),
-            "created_by": session["user"]
-        }
-        mongo.db.traditions.update(
-            {"_id": ObjectId(tradition_id)}, edit_tradition)
-        flash("Your tradition has been updated.")
+    tradition = mongo.db.traditions.find_one(
+                {"_id": ObjectId(tradition_id)})
+    traditions = list(mongo.db.traditions.find())
+    trad_owner = tradition["created_by"]
+    # check if user is logged in, if not flash message and redirect to login 
+    if "user" not in session: 
+        flash("Please log in to edit your traditions")
+        return redirect(url_for("login"))
+    
+    # check if user is the tradition owner
+    if session["user"] != trad_owner:
+        username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+        flash("You are trying to edit someone else's tradition!")
+        return render_template(
+            "user_profile.html", username=username, traditions=traditions)
 
-    # if method is not POST then revert to this default
-    tradition = mongo.db.traditions.find_one({"_id": ObjectId(tradition_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    groups = mongo.db.groups.find().sort("group_name", 1)
-    countries = mongo.db.countries.find().sort("country_name", 1)
-    return render_template(
-        "edit_tradition.html", tradition=tradition, categories=categories, groups=groups, countries=countries)
+    else: 
+        if request.method == "POST":
+            # collects the form fields and creates a dictionary
+            edit_tradition = {
+                "tradition_name": request.form.get("tradition_name"),
+                "category_name": request.form.get("category_name"),
+                "group_name": request.form.get("group_name"),
+                "country_name": request.form.get("country_name"),
+                "tradition_description": request.form.get("tradition_description"),
+                "created_by": session["user"]
+            }
+            mongo.db.traditions.update(
+                {"_id": ObjectId(tradition_id)}, edit_tradition)
+            flash("Your tradition has been updated.")
+
+        # if method is not POST then revert to this default
+        tradition = mongo.db.traditions.find_one({"_id": ObjectId(tradition_id)})
+        categories = mongo.db.categories.find().sort("category_name", 1)
+        groups = mongo.db.groups.find().sort("group_name", 1)
+        countries = mongo.db.countries.find().sort("country_name", 1)
+        return render_template(
+            "edit_tradition.html",
+            tradition=tradition,
+            categories=categories,
+            groups=groups,
+            countries=countries)
 
 
 @app.route("/delete_tradition/<tradition_id>")
 def delete_tradition(tradition_id):
-    mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
-    flash("Your tradition has been deleted.")
-    return redirect(url_for("get_traditions"))
-    # I need a 'remove image from S3 action
+    if "user" not in session: 
+        flash("Please log in to delete your traditions")
+        return redirect(url_for("login"))
+    
+    else: 
+        mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
+        flash("Your tradition has been deleted.")
+        return redirect(url_for("get_traditions"))
+        # I need a 'remove image from S3 action
 
 
 if __name__ == "__main__":

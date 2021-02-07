@@ -229,6 +229,7 @@ If this section grows too long, you may want to split it off into a separate fil
 - Add tradition form select field validation - the Materialize select field does not show an error when left blank, this is a known bug that the validation does not work. I fixed this with help from the Tasks Manager project in this course.
 - The materialize class adds a white dot under the form. This is fixed by setting it as 'display: none'
 - The valid_images() function should check the file type and not upload the file if it is not one of the allowed types. It should then not allow the upload, however this is currently not written to handle this. [[[need to expand on this]]]
+- Select field on mobile: on mobile Materialize bug shows a down arrow on select fields for the validate message. [Fixed this with help from the Stackexchange resource here](https://stackoverflow.com/questions/52850091/materialize-select-and-dropdown-touch-event-selecting-wrong-item/52851046#52851046) 
 
 ## Deployment
 

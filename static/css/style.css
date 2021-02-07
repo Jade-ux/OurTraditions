@@ -269,7 +269,7 @@ nav {
 }
 
 .hint-text {
-    color: snow;
+    color:#28282d;
     font-size: 0.9rem;
     padding-left: 45px;
 }
@@ -345,7 +345,11 @@ nav {
 
 /*-------------------------------------------------Icons*/
 
-.prefix.active.maroon {
+.prefix.active.orange-icon {
+    color: #b61753;
+}
+
+.orange-icon {
     color: #F05A24;
 }
 
