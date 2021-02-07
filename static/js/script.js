@@ -8,6 +8,7 @@
     // Fixes the bug displaying an arrow for the validation messages on mobile
     // From https://stackoverflow.com/questions/52850091/materialize-select-and-dropdown-touch-event-selecting-wrong-item/52851046#52851046
     $(document).click(function(){
+    "use strict";
     $('li[id^="select-options"]').on('touchend', function (e) {
         e.stopPropagation();
         });

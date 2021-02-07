@@ -13,7 +13,7 @@
     <!--Tradition cards-->
     {% for tradition in traditions %}
     {% if session.user|lower == tradition.created_by|lower %}
-            <div class="card col s12 trad-card">
+<div class="card col s12 trad-card">
                 <div class="row card-row">
                     <div class="col s12 m4">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -29,19 +29,19 @@
                             </div>
                             <div class="col s12 m4 card-actions">
                                 <h4><i
-                                        class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
+                                        class="fas fa-globe-africa prefix orange-icon card-icon"></i>{{ tradition.country_name.capitalize() }}
                                 </h4>
                             </div>
                             <div class="col s12 m4 card-actions">
                                 <h4>
                                     <i
-                                        class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
+                                        class="fas fa-folder-open prefix orange-icon card-icon"></i>{{ tradition.category_name.capitalize() }}
                                 </h4>
                             </div>
                             <div class="col s12 m4 card-actions">
                                 <h4>
                                     <i
-                                        class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
+                                        class="fas fa-users prefix orange-icon card-icon"></i>{{ tradition.group_name.capitalize() }}
                                 </h4>
                             </div>
                             <div class="col s12 m4 card-actions read-more-link">
@@ -62,8 +62,7 @@
                             {% else %}
                             <!--If tradition does not belong to user-->
                             <div class="col s12 m8 card-actions">
-                                <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
-                                    <i class="fas fa-user right"></i>
+                                <h4 class="left"><i class="fas fa-user orange-icon"></i>&nbsp; Added by {{ tradition.created_by.capitalize() }}
                                 </h4>
                             </div>
                             {% endif %}

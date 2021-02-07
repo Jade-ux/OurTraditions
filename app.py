@@ -328,7 +328,6 @@ def add_tradition():
 def edit_tradition(tradition_id):
     tradition = mongo.db.traditions.find_one(
                 {"_id": ObjectId(tradition_id)})
-    traditions = list(mongo.db.traditions.find())
     trad_owner = tradition["created_by"]
     # check if user is logged in, if not flash message and redirect to login 
     if "user" not in session: 
@@ -337,6 +336,7 @@ def edit_tradition(tradition_id):
     
     # check if user is the tradition owner
     if session["user"] != trad_owner:
+        traditions = list(mongo.db.traditions.find())
         username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
         flash("You are trying to edit someone else's tradition!")
@@ -373,10 +373,22 @@ def edit_tradition(tradition_id):
 
 @app.route("/delete_tradition/<tradition_id>")
 def delete_tradition(tradition_id):
+    tradition = mongo.db.traditions.find_one(
+                {"_id": ObjectId(tradition_id)})
+    trad_owner = tradition["created_by"]
     if "user" not in session: 
         flash("Please log in to delete your traditions")
         return redirect(url_for("login"))
     
+    # check if user is the tradition owner
+    if session["user"] != trad_owner:
+        traditions = list(mongo.db.traditions.find())
+        username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+        flash("You are trying to edit someone else's tradition!")
+        return render_template(
+            "user_profile.html", username=username, traditions=traditions)
+
     else: 
         mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
         flash("Your tradition has been deleted.")

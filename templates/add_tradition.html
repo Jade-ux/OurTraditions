@@ -8,7 +8,7 @@
         <!--Tradition name-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-heading prefix maroon"></i>
+                <i class="fas fa-heading prefix orange-icon"></i>
                 <input id="tradition_name" name="tradition_name" minlength="3" maxlength="50" type="text"
                     class="validate" required>
                 <label for="tradition_name">Give your tradition a name</label>
@@ -17,7 +17,7 @@
         <!--Category-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-folder-open prefix maroon"></i>
+                <i class="fas fa-folder-open prefix orange-icon"></i>
                 <select id="category_name" name="category_name" class="validate" required>
                     <option value="" disabled selected>Pick a category</option>
                     {% for category in categories %}
@@ -30,7 +30,7 @@
         <!--Group-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-users prefix maroon"></i>
+                <i class="fas fa-users prefix orange-icon"></i>
                 <select id="group_name" name="group_name" class="validate" required>
                     <option value="" disabled selected>Who does this?</option>
                     {% for group in groups %}
@@ -43,7 +43,7 @@
         <!--Country-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-globe-africa prefix maroon"></i>
+                <i class="fas fa-globe-africa prefix orange-icon"></i>
                 <select id="country_name" name="country_name" class="validate" required>
                     <option value="" disabled selected>Which country are you in?</option>
                     {% for country in countries %}
@@ -56,7 +56,7 @@
         <!--Description-->
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-comment-dots prefix maroon"></i>
+                <i class="fas fa-comment-dots prefix orange-icon"></i>
                 <textarea id="tradition_description" name="tradition_description" minlength="10" maxlength="300"
                     class="materialize-textarea validate add-trad-text-area" required></textarea>
                 <label for="tradition_description">Describe your tradition</label>
@@ -68,7 +68,7 @@
                 <label for="trad_image" class="image-upload-label">Upload an image for your tradition</label>
             </div>
             <div class="input-field col s12">
-                <i class="fas fa-image prefix maroon"></i> <input type="file" name="trad_image" id="trad_image"
+                <i class="fas fa-image prefix orange-icon"></i> <input type="file" name="trad_image" id="trad_image"
                     accept=".jpg, .jpeg, .png, .gif" class="validate image-upload-field" required>
             </div>
         </div>
