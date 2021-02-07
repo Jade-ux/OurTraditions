@@ -430,7 +430,16 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     background-color: #000;
 }
 
+/*
 .select-dropdown.dropdown-content li.selected, .dropdown-content {
+        background-color: #0c0c0c;
+}*/
+
+.select-dropdown.dropdown-content li.selected {
+    display: none;
+}
+
+.dropdown-content {
         background-color: #0c0c0c;
 }
 

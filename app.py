@@ -300,21 +300,26 @@ def logout():
 
 @app.route("/add_tradition", methods=["GET", "POST"])
 def add_tradition():
-    if request.method == "POST":
-        # collects the form fields and creates a dictionary
-        tradition = {
-            "tradition_name": request.form.get("tradition_name"),
-            "category_name": request.form.get("category_name"),
-            "group_name": request.form.get("group_name"),
-            "country_name": request.form.get("country_name"),
-            "tradition_description": request.form.get("tradition_description"),
-            "trad_image": upload_file(),
-            "created_by": session["user"],
-            # "vote_count": 0,
-        }
-        mongo.db.traditions.insert_one(tradition)
-        flash("Your tradition has been added!")
-        return redirect(url_for("get_traditions"))
+    if "user" not in session:
+        flash("Please log in to add a tradition")
+        return redirect(url_for("login"))
+
+    else:
+        if request.method == "POST":
+            # collects the form fields and creates a dictionary
+            tradition = {
+                "tradition_name": request.form.get("tradition_name"),
+                "category_name": request.form.get("category_name"),
+                "group_name": request.form.get("group_name"),
+                "country_name": request.form.get("country_name"),
+                "tradition_description": request.form.get("tradition_description"),
+                "trad_image": upload_file(),
+                "created_by": session["user"],
+                # "vote_count": 0,
+            }
+            mongo.db.traditions.insert_one(tradition)
+            flash("Your tradition has been added!")
+            return redirect(url_for("get_traditions"))
 
     # if method is not POST then revert to the default method which is GET    
     categories = mongo.db.categories.find().sort("category_name", 1)
