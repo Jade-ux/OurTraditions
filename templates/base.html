@@ -76,10 +76,10 @@
             {% endblock %}
             {% block allTraditions %}
             <div class="col s12">
-                <h2>Traditions</h2>
+                <h2>All traditions</h2>
             </div>
             <!--Tradition cards-->
-                {% for tradition in traditions_list %}
+                {% for tradition in traditions %}
             <div class="card col s12 trad-card">
                 <div class="row card-row">
                     <div class="col s12 m4">
@@ -129,17 +129,10 @@
                             {% else %}
                             <!--If tradition does not belong to user-->
                             <div class="col s12 m8 card-actions">
-                                <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
+                                <h4 class="left">Added by {{ tradition.created_by.capitalize() }}
                                     <i class="fas fa-user right"></i>
                                 </h4>
                             </div>
-                            <!--Like button-->
-                            <!--
-                                <div class="col s12 m2 card-actions">
-                                    <a class="btn-small maroon-button right" href="#"><h4><i
-                                                class="fas fa-heart"></i>
-                                            </h4></a>
-                                </div>-->
                             {% endif %}
                         </div>
                     </div>

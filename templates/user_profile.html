@@ -17,7 +17,8 @@
                 <div class="row card-row">
                     <div class="col s12 m4">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="card-img" src="{{ tradition.trad_image }}" alt="{{ tradition.tradition_name }}">
+                            <img class="card-img activator" src="{{ tradition.trad_image }}"
+                                alt="{{ tradition.tradition_name }}">
                         </div>
                     </div>
                     <div class="col s12 m8">
@@ -26,59 +27,46 @@
                                 <h3>{{ tradition.tradition_name.capitalize() }}
                                 </h3>
                             </div>
-                            <div class="row">
-                                <div class="col s12 m4">
-                                    <h4 class="card-details"><i
-                                            class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
-                                    </h4>
-                                </div>
-                                <div class="col s12 m4">
-                                    <h4 class="card-details">
-                                        <i
-                                            class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
-                                    </h4>
-                                </div>
-                                <div class="col s12 m4">
-                                    <h4 class="card-details">
-                                        <i
-                                            class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
-                                    </h4>
-                                </div>
+                            <div class="col s12 m4 card-actions">
+                                <h4><i
+                                        class="fas fa-globe-africa prefix maroon card-icon"></i>{{ tradition.country_name.capitalize() }}
+                                </h4>
                             </div>
-                            <div class="row card-actions">
-                                <div class="col s12 m4">
-                                    <p><a class="card-details activator read-more-link">Read more ></a>
-                                    </p>
-                                </div>
-                                <!--Edit and delete buttons, if tradition belongs to user-->
-                                {% if session.user|lower == tradition.created_by|lower %}
-                                <div class="row card-ud-actions">
-                                    <div class="col s12 m4">
-                                        <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
-                                            class="waves-effect btn-small maroon-button"><i
-                                                class="fas fa-pencil-alt right"></i>Edit</a>
-                                    </div>
-                                    <div class="col s12 m4">
-                                        <a href="#modal1"
-                                            class="waves-effect btn-small maroon-button right modal-trigger"><i
-                                                class="fas fa-trash-alt right"></i>Delete</a>
-                                    </div>
-                                </div>
-                                {% else %}
-                                <!--If tradition does not belong to user-->
-                                <div class="col s12 m6">
-                                    <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
-                                        <i class="fas fa-user right"></i>
-                                    </h4>
-                                </div>
-                                <!--Like button-->
-                                <div class="col s12 m2">
-                                    <p><a class="card-details btn-small maroon-button right" href="#"><i
-                                                class="fas fa-heart"></i></a>
-                                    </p>
-                                </div>
-                                {% endif %}
+                            <div class="col s12 m4 card-actions">
+                                <h4>
+                                    <i
+                                        class="fas fa-folder-open prefix maroon card-icon"></i>{{ tradition.category_name.capitalize() }}
+                                </h4>
                             </div>
+                            <div class="col s12 m4 card-actions">
+                                <h4>
+                                    <i
+                                        class="fas fa-users prefix maroon card-icon"></i>{{ tradition.group_name.capitalize() }}
+                                </h4>
+                            </div>
+                            <div class="col s12 m4 card-actions read-more-link">
+                                <p><a class="card-details activator">Read more ></a>
+                                </p>
+                            </div>
+                            <!--Edit and delete buttons, if tradition belongs to user-->
+                            {% if session.user|lower == tradition.created_by|lower %}
+                            <div class="col s12 m4 card-actions">
+                                <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
+                                    class="waves-effect btn-small maroon-button"><i
+                                        class="fas fa-pencil-alt right"></i>Edit</a>
+                            </div>
+                            <div class="col s12 m4 card-actions">
+                                <a href="#modal1" class="waves-effect btn-small maroon-button left modal-trigger"><i
+                                        class="fas fa-trash-alt left"></i>Delete</a>
+                            </div>
+                            {% else %}
+                            <!--If tradition does not belong to user-->
+                            <div class="col s12 m8 card-actions">
+                                <h4 class="left">Posted by {{ tradition.created_by.capitalize() }}
+                                    <i class="fas fa-user right"></i>
+                                </h4>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -92,18 +80,18 @@
                     <p class="card-description">{{ tradition.tradition_description.capitalize() }}</p>
                 </div>
             </div>
-    <!-- Modal for delete confirmation -->
-        <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Delete tradition</h4>
-            <p>Are you sure you want to delete the {{ tradition.tradition_name.capitalize() }} tradition?</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, cancel</a>
-            <a href="{{ url_for('delete_tradition', tradition_id=tradition._id) }}"
-                class="modal-close waves-effect waves-green btn-flat">Yes, delete!</a>
-        </div>
-    </div>
+            <!-- Modal for delete confirmation -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Delete tradition</h4>
+                    <p>Are you sure you want to delete the {{ tradition.tradition_name.capitalize() }} tradition?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, cancel</a>
+                    <a href="{{ url_for('delete_tradition', tradition_id=tradition._id) }}"
+                        class="modal-close waves-effect waves-green btn-flat">Yes, delete!</a>
+                </div>
+            </div>
     {% endif %}
     {% endfor %}
 </div>

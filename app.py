@@ -146,12 +146,11 @@ def upload_file_to_s3(file):
 @app.route("/")
 @app.route("/get_traditions")
 def get_traditions():
-    traditions = list(mongo.db.traditions.find())
-    traditions_list = list(mongo.db.traditions.find().sort("_id", -1))
+    traditions = list(mongo.db.traditions.find().sort("_id", -1))
     categories_list = mongo.db.traditions.distinct("category_name")
     countries_list = mongo.db.traditions.distinct("country_name")
     groups_list = mongo.db.traditions.distinct("group_name")
-    return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list, traditions_list=traditions_list)
+    return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -167,7 +166,7 @@ def search():
         categories_list = mongo.db.traditions.distinct("category_name")
         countries_list = mongo.db.traditions.distinct("country_name")
         groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
 
 
 @app.route("/search_country", methods=["GET", "POST"])
@@ -183,7 +182,7 @@ def search_country():
         categories_list = mongo.db.traditions.distinct("category_name")
         countries_list = mongo.db.traditions.distinct("country_name")
         groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
 
 
 @app.route("/search_category", methods=["GET", "POST"])
@@ -199,7 +198,7 @@ def search_category():
         categories_list = mongo.db.traditions.distinct("category_name")
         countries_list = mongo.db.traditions.distinct("country_name")
         groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
 
 
 @app.route("/search_group", methods=["GET", "POST"])
@@ -215,7 +214,7 @@ def search_group():
         categories_list = mongo.db.traditions.distinct("category_name")
         countries_list = mongo.db.traditions.distinct("country_name")
         groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
 
 
 @app.route("/register", methods=["GET", "POST"])

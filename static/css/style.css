@@ -36,6 +36,17 @@ body {
     font-size: 1.4rem;
 }
 
+.feature-image img{
+   width: 80%;
+}
+
+@media only screen and (max-width: 991px){
+
+    .feature-image {
+        display: none;
+    }
+}
+
 /*-------------------------------------------------Headings*/
 
 .brand-logo {
@@ -57,6 +68,7 @@ h2 {
     color: #F68931;
     font-weight: 300;
     font-family: 'Raleway', sans-serif;
+    margin: 0.3733333333rem 0 1.424rem 0;
 }
 
 h3 {
@@ -381,7 +393,7 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 }
 
 .add-trad-button-col {
-    margin-top: 25px;
+    margin-top: 35px;
 }
 
 #group_name.validate, #category_name.validate, #country_name.validate, #country.validate, #category.validate, #group.validate {
@@ -402,11 +414,11 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 }
 
 /*-------------------------------------------------Accordions*/
-
+/* not used at the moment
 .accordion-row {
     top: 30px;
     position: relative;
-}
+}*/
 
 .collapsible {
     border: none;
