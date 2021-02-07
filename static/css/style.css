@@ -191,13 +191,18 @@ nav {
     margin-right: 5px;
 }
 
+.maroon-button:hover, .maroon-button:focus, .maroon-button:active {
+    background-color: #8a113f;
+    color: #fff;
+}
+
 @media only screen and (max-width: 769px) {
     .maroon-button {
         margin-bottom: 10px;
     }
 }
 
-.maroon-button:hover, .maroon-button:focus, .maroon-button:active {
+.maroon-button:focus, .maroon-button:active {
     background-color: #8a113f;
     color: #fff;
 }
@@ -233,7 +238,7 @@ nav {
     border-radius: 3px;
 }
 
-/*-------------------------------------------------Containers*/
+/*-------------------------------------------------Containers and rows*/
 
 .main-container {
     padding-top: 20px;
@@ -241,6 +246,10 @@ nav {
 
 .gradient-block {
     background-image: linear-gradient(to bottom right, #F9A42C, #F05A24, #B61753);
+}
+
+.overview-row {
+    margin-bottom: 0px;
 }
 
 /*-------------------------------------------------Cards*/
@@ -351,6 +360,14 @@ nav {
 
 .orange-icon {
     color: #F68931;
+}
+
+.maroon-icon {
+    color: #B61753;
+}
+
+.prefix.active.maroon-icon {
+    color: #f05a24;
 }
 
 /*-------------------------------------------------Forms*/
