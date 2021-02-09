@@ -351,7 +351,6 @@ def edit_tradition(tradition_id):
 
         else: 
             new_image = request.form.get("trad_image")
-            #if request.files["trad_image"].filename == "":
             if new_image == "":
                 edited_image = tradition["trad_image"]
 
