@@ -208,7 +208,6 @@ nav {
 }
 
 .save-button {
-    margin-left: 45px;
     margin-right: 15px;
 }
 
@@ -265,7 +264,7 @@ nav {
 }
 
 .card .card-image img {
-    width: auto;
+    width: 100%;
 }
 
 .card-image {
@@ -419,6 +418,19 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 .image-upload-label {
     margin-left: 45px;
     font-size: 1rem;
+}
+
+#edit-image-row {
+    margin-left: 0px;
+}
+
+#edit-image-icon {
+    top: 1.9rem;
+}
+
+.edit-image {
+    width: 100%;
+    padding-left: 45px;
 }
 
 .add-trad-button-col {

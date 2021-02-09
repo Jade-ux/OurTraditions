@@ -4,12 +4,13 @@
 <div class="row">
     <h2>Edit your tradition</h2>
     <!--Form-->
-    <form class="col s12" method="POST" action="{{ url_for('edit_tradition', tradition_id=tradition._id) }}">
-    <!--Tradition name-->
+    <form class="col s12" method="POST" enctype="multipart/form-data" action="{{ url_for('edit_tradition', tradition_id=tradition._id) }}">
+        <!--Tradition name-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-heading prefix orange-icon"></i>
-                <input id="tradition_name" name="tradition_name" minlength="3" maxlength="50" type="text" class="validate" value="{{ tradition.tradition_name }}"required>
+                <input id="tradition_name" name="tradition_name" minlength="3" maxlength="50" type="text"
+                    class="validate" value="{{ tradition.tradition_name }}" required>
                 <label for="tradition_name">Give your tradition a name</label>
             </div>
         </div>
@@ -19,11 +20,11 @@
                 <i class="fas fa-stream prefix orange-icon"></i>
                 <select id="category_name" name="category_name" class="validate" required>
                     {% for category in categories %}
-                        {% if category.category_name == tradition.category_name %}
-                            <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
-                        {% else %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                        {% endif %}
+                    {% if category.category_name == tradition.category_name %}
+                    <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                    {% else %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="category_name">Category</label>
@@ -35,47 +36,71 @@
                 <i class="fas fa-users prefix orange-icon"></i>
                 <select id="group_name" name="group_name" class="validate" required>
                     {% for group in groups %}
-                        {% if group.group_name == tradition.group_name %}
-                            <option value="{{ group.group_name }}" selected>{{ group.group_name }}</option>
-                        {% else %}
-                            <option value="{{ group.group_name }}">{{ group.group_name }}</option>
-                        {% endif %}
+                    {% if group.group_name == tradition.group_name %}
+                    <option value="{{ group.group_name }}" selected>{{ group.group_name }}</option>
+                    {% else %}
+                    <option value="{{ group.group_name }}">{{ group.group_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="group_name">Group</label>
             </div>
         </div>
-    <!--Country-->
+        <!--Country-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-globe-africa prefix orange-icon"></i>
-                    <select id="country_name" name="country_name" class="validate" required>
+                <select id="country_name" name="country_name" class="validate" required>
                     {% for country in countries %}
-                        {% if country.country_name == tradition.country_name %}
-                            <option value="{{ country.country_name }}"selected>{{ country.country_name }}</option>
-                        {% else %}
-                                <option value="{{ country.country_name }}">{{ country.country_name }}</option>
-                        {% endif %}
+                    {% if country.country_name == tradition.country_name %}
+                    <option value="{{ country.country_name }}" selected>{{ country.country_name }}</option>
+                    {% else %}
+                    <option value="{{ country.country_name }}">{{ country.country_name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label for="country">Choose your country</label>
             </div>
-            </div>
-    <!--Description-->
+        </div>
+        <!--Description-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-comment-dots prefix orange-icon"></i>
-                <textarea id="tradition_description" name="tradition_description" minlength="10" maxlength="300" class="materialize-textarea validate" required>{{- tradition.tradition_description -}}</textarea>
+                <textarea id="tradition_description" name="tradition_description" minlength="10" maxlength="300"
+                    class="materialize-textarea validate" required>{{- tradition.tradition_description -}}</textarea>
                 <label for="tradition_description">Description</label>
             </div>
         </div>
-    <!--Buttons-->
+        <!--image-->
+        <div class="row" id="edit-image-row">
+            <div class="input-field col s12 l7 ">
+                <div class="row">
+                    <div class="s12">
+                        <label for="trad_image" class="image-upload-label">Upload a new image or leave it blank.</label>
+                    </div>
+                    <div class="s12">
+                        <i class="fas fa-image prefix orange-icon" id="edit-image-icon"></i
+                            >
+                        <input type="file" name="trad_image" id="trad_image"
+                    accept=".jpg, .jpeg, .png, .gif" class="validate image-upload-field">
+                        <input type="text" name="existing_image" id="existing_image" value="{{ tradition.trad_image }}">
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 l5">
+                <h4 class="right">Your current image</h4><img class="edit-image" src="{{ tradition.trad_image }}"
+                    alt="{{ tradition.tradition_name }}">
+            </div>
+        </div>
+        <!--Buttons-->
         <div class="row">
             <div class="col s12">
                 <!--Submit button-->
-                <button type="submit" class="btn-small maroon-button save-button">Save your changes <i class="fas fa-cloud-upload-alt right"></i></button> 
+                <button type="submit" class="btn-small maroon-button save-button">Save changes <i
+                        class="fas fa-cloud-upload-alt right"></i></button>
                 <!--Cancel button-->
-                <a href="{{ url_for('get_traditions') }}" class="btn-small orange-button"><i class="fas fa-times right"></i>Cancel</a>
+                <a href="{{ url_for('get_traditions') }}" class="btn-small orange-button"><i
+                        class="fas fa-times right"></i>Cancel</a>
             </div>
         </div>
     </form>
