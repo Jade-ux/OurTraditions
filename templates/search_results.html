@@ -199,9 +199,9 @@
         <!--If no search results-->
         {% else %}
         <div class="row">
-        <div class="col s12">
-            <h2>We don't have any traditions for that search yet, why not add your own?</h2>
-            <a href="/add_tradition.html" class="maroon-button btn-small">
+        <div class="col s12 center-align">
+            <h2>We don't have any traditions for that search yet, why not add your&nbsp;own?</h2>
+            <a href="{{ url_for('add_tradition') }}" class="maroon-button btn-small">
                 <i class="fas fa-plus-circle left"></i> Add tradition
             </a>
         </div>

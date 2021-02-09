@@ -38,7 +38,13 @@ body {
 }
 
 .feature-image img{
-   width: 100%;
+   width: 80%;
+}
+
+.footer {
+    background-color: #13151a;
+    padding-top: 20px;
+    height: 50px;
 }
 
 @media only screen and (max-width: 991px){
@@ -140,9 +146,12 @@ nav {
     .nav-bar-grey{
         min-height: 190px;
     }
-    nav.brand-logo{
-    left: 30%;
-    }
+}
+
+@media only screen and (max-width: 992px) {
+     nav .brand-logo {
+        left: 40%;
+     }
 }
 
 @media only screen and (max-width: 1296px) {
@@ -263,11 +272,13 @@ nav {
     border-radius: 2px;
 }
 
-.card .card-image img {
+.card-img {
+    height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 
-.card-image {
+.card-image-col {
     height: 200px;
 }
 
@@ -334,6 +345,7 @@ nav {
 
 .card-description {
     color: snow;
+    font-size: 1.1rem;
 }
 
 @media only screen and (max-width: 769px) {

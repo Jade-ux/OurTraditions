@@ -74,92 +74,6 @@
         <div class="row overlay-row">
             {% block content %}
             {% endblock %}
-            {% block allTraditions %}
-            <div class="col s12 add-trads-header">
-                <h2>All traditions</h2>
-            </div>
-            <!--Tradition cards-->
-                {% for tradition in traditions %}
-            <div class="card col s12 trad-card">
-                <div class="row card-row">
-                    <div class="col s12 m4">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="card-img activator" src="{{ tradition.trad_image }}"
-                                alt="{{ tradition.tradition_name }}">
-                        </div>
-                    </div>
-                    <div class="col s12 m8">
-                        <div class="card-content row">
-                            <div class="col s12">
-                                <h3>{{ tradition.tradition_name.capitalize() }}
-                                </h3>
-                            </div>
-                            <div class="col s12 m4 card-actions">
-                                <h4><i
-                                        class="fas fa-globe-africa prefix orange-icon card-icon"></i>{{ tradition.country_name.capitalize() }}
-                                </h4>
-                            </div>
-                            <div class="col s12 m4 card-actions">
-                                <h4>
-                                    <i
-                                        class="fas fa-folder-open prefix orange-icon card-icon"></i>{{ tradition.category_name.capitalize() }}
-                                </h4>
-                            </div>
-                            <div class="col s12 m4 card-actions">
-                                <h4>
-                                    <i
-                                        class="fas fa-users prefix orange-icon card-icon"></i>{{ tradition.group_name.capitalize() }}
-                                </h4>
-                            </div>
-                            <div class="col s12 m4 card-actions read-more-link">
-                                <p><a class="card-details activator">Read more ></a>
-                                </p>
-                            </div>
-                            <!--Edit and delete buttons, if tradition belongs to user-->
-                            {% if session.user|lower == tradition.created_by|lower %}
-                            <div class="col s12 m4 card-actions">
-                                <a href="{{ url_for('edit_tradition', tradition_id=tradition._id) }}"
-                                    class="waves-effect btn-small maroon-button"><i
-                                        class="fas fa-pencil-alt right"></i>Edit</a>
-                            </div>
-                            <div class="col s12 m4 card-actions">
-                                <a href="#modal1" class="waves-effect btn-small maroon-button left modal-trigger"><i
-                                        class="fas fa-trash-alt left"></i>Delete</a>
-                            </div>
-                            {% else %}
-                            <!--If tradition does not belong to user-->
-                            <div class="col s12 m8 card-actions">
-                                <h4 class="left"><i class="fas fa-user orange-icon"></i>&nbsp; Added by {{ tradition.created_by.capitalize() }}
-                                </h4>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <!--Card reveal-->
-                <div class="card-reveal">
-                    <span class="card-title">{{ tradition.tradition_name.capitalize() }}
-                        <i class="fas fa-times right">
-                            <span class="sr-only">Close</span>
-                        </i>
-                    </span>
-                    <p class="card-description">{{ tradition.tradition_description.capitalize() }}</p>
-                </div>
-            </div>
-            <!-- Modal for delete confirmation -->
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <h4>Delete tradition</h4>
-                    <p>Are you sure you want to delete the {{ tradition.tradition_name.capitalize() }} tradition?</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">No, cancel</a>
-                    <a href="{{ url_for('delete_tradition', tradition_id=tradition._id) }}"
-                        class="modal-close waves-effect waves-green btn-flat">Yes, delete!</a>
-                </div>
-            </div>
-                {% endfor %}
-            {% endblock %}
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -169,5 +83,7 @@
     {% block scripts %}
     {% endblock %}
 </body>
-
+<footer>
+    <div class="center-align col s12 footer"><h4>&#169 Jade C</h4></div>
+</footer>
 </html>
