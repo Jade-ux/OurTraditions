@@ -187,7 +187,8 @@ In addition, you may also use this section to discuss plans for additional featu
 <span id="futurefeatures"></span>
 
 ### Features Left to Implement
-- Another feature idea
+- Voting
+- Pagination 
 
 <span id="technologies"></span>
 

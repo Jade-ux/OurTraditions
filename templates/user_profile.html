@@ -1,11 +1,13 @@
 {% extends "base.html" %}
+{% block introAndSearch %}
+{% endblock %}
 {% block content %}
 
 <div class="row">
-    <div class="col s12 m6 offset-m3">
-        <h2 class="center-align">
-            {{ username }}'s profile
-        </h2>
+    <div class="col s12">
+        <p class="center-align profile-message">
+            Hi {{ username }}, this is your collection of traditions. From here you can edit, delete or add traditions. 
+        </p>
     </div>
 </div>
 <div class="row">
@@ -94,5 +96,12 @@
     {% endif %}
     {% endfor %}
 </div>
+        <div class="col s12 center-align">
+            <a href="{{ url_for('add_tradition') }}" class="maroon-button btn-small">
+                <i class="fas fa-plus-circle left"></i> Add a tradition
+            </a>
+        </div>
 
+{% endblock %}
+{% block traditions %}
 {% endblock %}

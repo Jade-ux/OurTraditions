@@ -40,8 +40,8 @@ body {
 
 .flashed-messsages {
     line-height: 2;
-    color: snow;
-    font-size: 1.4rem;
+    color: #F68931;
+    font-size: 1.6rem;
 }
 
 .feature-image img{
@@ -112,6 +112,11 @@ h5 {
     margin-top: 0.2rem;
 }
 
+.profile-message {
+    font-size: 2.1rem;
+    color: snow;
+}
+
 #search {
     color: #fff;
     margin-top: 20px;
@@ -158,7 +163,9 @@ nav {
 @media only screen and (max-width: 992px) {
      nav .brand-logo {
         left: 40%;
+        transform: translateX(-60%);
      }
+     
 }
 
 @media only screen and (max-width: 1296px) {
