@@ -1,3 +1,7 @@
+![image](wireframes+mockups/mockups.png)
+
+[View live site](https://our-traditions.herokuapp.com/)
+
 # Our Traditions
 
 <span id="index"></span>
@@ -16,13 +20,13 @@
 - <a href="#existingfeatures">Existing features</a>
 - <a href="#futurefeatures">Features left to implement</a>
 - <a href="#technologies">Technologies used</a>
-- <a href="#"></a>
-- <a href="#"></a>
-- <a href="#"></a>
-- <a href="#"></a>
-- <a href="#"></a>
-- <a href="#"></a>
-- <a href="#"></a>
+- <a href="/TESTING.md">Testing</a>
+- <a href="#bugs">Bug Fixes</a>
+- <a href="#deployment">Deployment</a>
+- <a href="#">Credits</a>
+- <a href="#">Contents</a>
+- <a href="#">Media</a>
+- <a href="#">Acknowledgements</a>
 - <a href="#"></a>
 
 
@@ -64,7 +68,7 @@ Site owner goals
 
 ### Wireframes
 
-[See my wireframes here](wireframes+mockups/wireframesv1.pdf)
+[See my wireframes here](wireframes+mockups/wireframes.pdf)
 
 data schema? Sitemap? 
 
@@ -92,7 +96,15 @@ How I came to the decision of dark colours and
 
 ### Colours
 
-Why I chose the dark colours
+I chose a warm colour palette to elicit feelings of warmth and comfort. When I decided on the colours I was imagining telling stories around the camp fire, which is one of the earliest traditions I can think of. The following colours remind me of fire and warmth:
+
+[See colour accessibility here](wireframes+mockups/colour-accessibility.pdf)colour-accessibility.pdf
+
+#D2430F
+
+Accessibility:
+
+White text on #D2430F background on .orange-button meets 
 
 ### Fonts
 ?? (required?)
@@ -205,7 +217,10 @@ In this section, you should mention all of the languages, frameworks, libraries,
     - The project uses **JQuery** to simplify DOM manipulation.
 - Amazon S3 - for hosting images uploaded to the site by users
 
+
 ## Testing
+
+For testing please see my testing page here: <a href="/TESTING.md">Testing</a>.
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
 
@@ -225,6 +240,9 @@ You should also mention in this section any interesting bugs or problems you dis
 
 If this section grows too long, you may want to split it off into a separate file and link to it from here.
 
+
+<span id="bugs"></span>
+
 ### Bug fixes
 
 - Add tradition form select field validation - the Materialize select field does not show an error when left blank, this is a known bug that the validation does not work. I fixed this with help from the Tasks Manager project in this course.
@@ -232,6 +250,8 @@ If this section grows too long, you may want to split it off into a separate fil
 - The valid_images() function should check the file type and not upload the file if it is not one of the allowed types. It should then not allow the upload, however this is currently not written to handle this. [[[need to expand on this]]]
 - Select field on mobile: on mobile Materialize bug shows a down arrow on select fields for the validate message. [Fixed this with help from the Stackexchange resource here](https://stackoverflow.com/questions/52850091/materialize-select-and-dropdown-touch-event-selecting-wrong-item/52851046#52851046) 
 - Tradition titles: Jinja does not have a sentence case function, only capitalize() and upper(). I wanted to make sure the tradition titles would appear in sentence case if added that way, to allow for proper nouns. I used Python's string manipulation syntax to achieve this. [I found this guide helpful.](https://shubhamjain.co/til/capitalizing-first-letter-in-jinja/)
+
+<span id="deployment"></span>
 
 ## Deployment
 
@@ -291,6 +311,8 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 5. From the main menu select 'IAM' and then 'Create new user'
 5. In your app install boto3: <code>pip install flask boto3</code>
 
+<span id="credits"></span>
+
 ## Credits
 
 - [This tutorial helped me build an image uploader](https://www.youtube.com/watch?v=6WruncSoCdI)
@@ -298,14 +320,25 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 - [To set up my Amazon account I used this tutorial.](https://www.youtube.com/watch?v=v33Kl-Kx30o)
 - [For help with Python's string manipulation syntax in Jinja I used this guide.](https://shubhamjain.co/til/capitalizing-first-letter-in-jinja/)
 
+<span id="content"></span>
 
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 
+<span id="media"></span>
+
 ### Media
-- The background image for this site is from https://www.toptal.com/ 
-- The photos used in this site were obtained from ...
+- The background image for this site is from [Toptal](https://www.toptal.com/) 
+- The photo used on this site was obtained from [Unsplash](https://unsplash.com/)
+- For testing purposes I have uploaded a few images to the tradition cards, these are also from [Unsplash](https://unsplash.com/)
+- All other photos on the site are uploaded by users.
+
+
+<span id="acknowledgements"></span>
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+- I received inspiration for this project from my team at Hexagon when we were discussing the different traditions we all celebrate over Christmas and New Year.
+- Thank you to the Code Institute Tutors for help with a snagging issue
+- Thank you to Ed Bradley and Chris Palmer for their invaluable help through some of my coding questions
+- Thank you to my mentor Dick Vlaanderen for guidance on my project
