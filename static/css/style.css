@@ -126,6 +126,12 @@ h5 {
     font-size: 1.2rem;
 }
 
+@media only screen and (max-width: 769px) {
+    .profile-message {
+        font-size: 1.5rem;
+    }
+}
+
 /*-------------------------------------------------Navigation*/
 
 .nav-bar-grey{
@@ -142,8 +148,17 @@ nav {
 .nav-items-desktop a {
     font-size: 1.1rem;
     color: #F9A42C;
-    padding: 7.5px 0px 0 15px;
+    margin: 7.5px 7.5px 0 7.5px;
     font-weight: 400;
+    padding: 0;
+}
+
+.nav-items-desktop li:first-child a {
+    margin-left: 0;
+}
+
+li.active {
+    border-bottom: 2px solid #f9a42c;
 }
 
 #mobile-demo {
@@ -152,6 +167,7 @@ nav {
 
 .sidenav li>a {
     color: #F9A42C;
+    font-size: 1.1rem;
 }
 
 @media only screen and (max-width: 769px) {
@@ -235,7 +251,7 @@ nav {
 }
 
 .orange-button {
-    background-color: #F05A24;
+    background-color: #D2430F;
     color: #fff;
     border-radius: 3px;
     margin-right: 5px;

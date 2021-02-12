@@ -20,22 +20,25 @@
         <!--top navbar-->
         <nav class="nav-extended nav-bar-grey">
             <div class="nav-wrapper grad-wrapper container">
+                <div class="col m6"></div>
                 <a href="{{ url_for('get_traditions') }}" class="brand-logo">
                     <h1>Our Shared Traditions</h1>
                 </a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down nav-items-desktop">
-                    <li><a href="{{ url_for('get_traditions') }}">Browse</a></li>
+                    <li class="{% block navBrowse %}{% endblock %}">
+                        <a href="{{ url_for('get_traditions') }}">Browse</a>
+                    </li>
                     {% if session.user %}
-                    <li>
+                    <li class="{% block navProfile %}{% endblock %}">
                         <a href="{{ url_for('profile', username=session['user']) }}">Profile</a>
                     </li>
-                    <li><a href="{{ url_for('add_tradition') }}">Add tradition</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                    <li>
+                    <li class="{% block navAddTradition %}{% endblock %}"><a href="{{ url_for('add_tradition') }}">Add tradition</a></li>
+                    <li class="{% block navLogout %}{% endblock %}"><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li class="{% block navClass %}{% endblock %}">
                         {% else %}
-                    <li><a href="{{ url_for('register') }}">Register</a></li>
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li class="{% block navRegister%}{% endblock %}"><a href="{{ url_for('register') }}">Register</a></li>
+                    <li class="{% block navLogin %}{% endblock %}"><a href="{{ url_for('login') }}">Login</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -80,7 +83,7 @@
             <div class="col s12">
                 <h2>Browse & share</h2>
                 <p class="white-text subtitle">What traditions do you share with other people and what traditions are
-                    unique to your family, friends or other group? Take a look at the traditions other people follow and
+                    unique to your family, friends or culture? Take a look through the traditions other people follow and register to 
                     share your own.</p>
             </div>
         </div>
@@ -208,7 +211,7 @@
                     <div class="col s12 m8">
                         <div class="card-content row">
                             <div class="col s12">
-                                <h3>{{ tradition.tradition_name.capitalize() }}
+                                <h3>{{ tradition.tradition_name[0]|upper}}{{tradition.tradition_name[1:] }}
                                 </h3>
                             </div>
                             <div class="col s12 m4 card-actions">
@@ -240,7 +243,7 @@
                                         class="fas fa-pencil-alt right"></i>Edit</a>
                             </div>
                             <div class="col s12 m4 card-actions">
-                                <a href="#modal1" class="waves-effect btn-small maroon-button left modal-trigger"><i
+                                <a href="#modal1" class="waves-effect btn-small orange-button left modal-trigger"><i
                                         class="fas fa-trash-alt left"></i>Delete</a>
                             </div>
                             {% else %}
@@ -255,12 +258,12 @@
                 </div>
                 <!--Card reveal-->
                 <div class="card-reveal">
-                    <span class="card-title">{{ tradition.tradition_name.capitalize() }}
+                    <span class="card-title">{{ tradition.tradition_name[0]|upper}}{{tradition.tradition_name[1:] }}
                         <i class="fas fa-times right">
                             <span class="sr-only">Close</span>
                         </i>
                     </span>
-                    <p class="card-description">{{ tradition.tradition_description.capitalize() }}</p>
+                    <p class="card-description">{{ tradition.tradition_description }}</p>
                 </div>
             </div>
             <!-- Modal for delete confirmation -->

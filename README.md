@@ -231,6 +231,7 @@ If this section grows too long, you may want to split it off into a separate fil
 - The materialize class adds a white dot under the form. This is fixed by setting it as 'display: none'
 - The valid_images() function should check the file type and not upload the file if it is not one of the allowed types. It should then not allow the upload, however this is currently not written to handle this. [[[need to expand on this]]]
 - Select field on mobile: on mobile Materialize bug shows a down arrow on select fields for the validate message. [Fixed this with help from the Stackexchange resource here](https://stackoverflow.com/questions/52850091/materialize-select-and-dropdown-touch-event-selecting-wrong-item/52851046#52851046) 
+- Tradition titles: Jinja does not have a sentence case function, only capitalize() and upper(). I wanted to make sure the tradition titles would appear in sentence case if added that way, to allow for proper nouns. I used Python's string manipulation syntax to achieve this. [I found this guide helpful.](https://shubhamjain.co/til/capitalizing-first-letter-in-jinja/)
 
 ## Deployment
 
@@ -295,6 +296,7 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 - [This tutorial helped me build an image uploader](https://www.youtube.com/watch?v=6WruncSoCdI)
 - [Documentation for how to create an Amazon AWS policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-policies-s3.html#iam-policy-ex4)
 - [To set up my Amazon account I used this tutorial.](https://www.youtube.com/watch?v=v33Kl-Kx30o)
+- [For help with Python's string manipulation syntax in Jinja I used this guide.](https://shubhamjain.co/til/capitalizing-first-letter-in-jinja/)
 
 
 ### Content
