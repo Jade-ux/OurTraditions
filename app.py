@@ -2,7 +2,7 @@ import os
 import boto3, botocore
 from botocore.client import Config
 from flask import (
-    Flask, flash, render_template, redirect, 
+    Flask, flash, render_template, redirect,
     request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -13,7 +13,7 @@ from PIL import Image, ImageOps
 if os.path.exists("env.py"):
     import env
 
-# image extensions allowed 
+# image extensions allowed
 VALID_IMAGE_EXTENSIONS = ["PNG", "JPG", "JPEG", "GIF"]
 
 
@@ -46,25 +46,30 @@ Code with thanks to (slightly modified):
 https://github.com/Edb83/self-isolution/blob/master/app.py
 
 """
+
+
 def valid_images(filename):
-    if not "." in filename:
+    if "." not in filename:
         return False
 
     extension = filename.rsplit(".", 1)[1]
 
     if extension.upper() in VALID_IMAGE_EXTENSIONS:
         return True
-    else: 
+    else:
         return False
 
 
 def upload_file():
     """
-    Checks if the file is not empty, and is an allowed file type, if it is, sanitize the file name with Werkzeug's secure_filename and then call upload_file_to_s3(). Return the output and convert to a string that can be saved in Mongo DB 
+    Checks if the file is not empty, and is an allowed file type,
+    if it is, sanitize the file name with Werkzeug's secure
+    filename and then call upload_file_to_s3(). Return the
+    output and convert to a string that can be saved in Mongo DB.
 
     """
     output = ""
- 
+
     file = request.files["trad_image"]
 
     if file.filename == "":
@@ -72,7 +77,8 @@ def upload_file():
         output = ""
 
     if not valid_images(file.filename):
-        flash("Your image was not the correct filetype, but that's ok, we'll add one in for you.")
+        flash(
+            "Your image was not the correct file type please choose another.")
         output = ""
 
     else:
@@ -140,6 +146,28 @@ def upload_file_to_s3(file):
     return "{}{}".format(S3_LOCATION, file.filename)
 
 
+"""
+Takes the searchCriteria from the search route
+decorator and searches the database on that criteria
+
+"""
+
+
+def render_search_results(searchCriteria):
+    traditions = list(
+            mongo.db.traditions.find({"$text": {"$search": searchCriteria}}))
+    categories_list = mongo.db.traditions.distinct("category_name")
+    countries_list = mongo.db.traditions.distinct("country_name")
+    groups_list = mongo.db.traditions.distinct(
+            "group_name")
+    return render_template(
+        "search_results.html",
+        traditions=traditions,
+        categories_list=categories_list,
+        countries_list=countries_list,
+        groups_list=groups_list)
+
+
 # Route decorators
 
 
@@ -150,7 +178,12 @@ def get_traditions():
     categories_list = mongo.db.traditions.distinct("category_name")
     countries_list = mongo.db.traditions.distinct("country_name")
     groups_list = mongo.db.traditions.distinct("group_name")
-    return render_template("traditions.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+    return render_template(
+        "traditions.html",
+        traditions=traditions,
+        categories_list=categories_list,
+        countries_list=countries_list,
+        groups_list=groups_list)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -159,14 +192,12 @@ def search():
     if keywords == "":
         flash("Please enter a keyword")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions)
+        return render_template(
+            "traditions.html",
+            traditions=traditions)
+    
     else:
-        traditions = list(
-            mongo.db.traditions.find({"$text":{"$search": keywords}}))
-        categories_list = mongo.db.traditions.distinct("category_name")
-        countries_list = mongo.db.traditions.distinct("country_name")
-        groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_search_results(keywords)
 
 
 @app.route("/search_country", methods=["GET", "POST"])
@@ -175,14 +206,12 @@ def search_country():
     if country == "":
         flash("Please enter a country")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
+        return render_template(
+            "traditions.html",
+            traditions=traditions)
+
     else:
-        traditions = list(
-            mongo.db.traditions.find({"$text":{"$search": country}}))
-        categories_list = mongo.db.traditions.distinct("category_name")
-        countries_list = mongo.db.traditions.distinct("country_name")
-        groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_search_results(country)
 
 
 @app.route("/search_category", methods=["GET", "POST"])
@@ -191,14 +220,11 @@ def search_category():
     if category == "":
         flash("Please enter a category")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
+        return render_template("traditions.html",
+            traditions=traditions)
+
     else:
-        traditions = list(
-            mongo.db.traditions.find({"$text":{"$search": category}}))
-        categories_list = mongo.db.traditions.distinct("category_name")
-        countries_list = mongo.db.traditions.distinct("country_name")
-        groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
+        return render_search_results(category)
 
 
 @app.route("/search_group", methods=["GET", "POST"])
@@ -207,15 +233,12 @@ def search_group():
     if group == "":
         flash("Please enter a group")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html", traditions=traditions, categories=categories, groups=groups)
+        return render_template(
+            "traditions.html",
+            traditions=traditions)
+    
     else:
-        traditions = list(
-            mongo.db.traditions.find({"$text":{"$search": group}}))
-        categories_list = mongo.db.traditions.distinct("category_name")
-        countries_list = mongo.db.traditions.distinct("country_name")
-        groups_list = mongo.db.traditions.distinct("group_name")
-        return render_template("search_results.html", traditions=traditions, categories_list=categories_list, countries_list=countries_list, groups_list=groups_list)
-
+        return render_search_results(group)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -237,12 +260,14 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        # once logged, redirect user to their profile page, using session cookie
+        # once logged, redirect user to their profile page,
+        # using session cookie
         return redirect(url_for("profile", username=session["user"]))
-    
+
     return render_template("register.html")
 
-#login function
+
+# login function
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -259,14 +284,17 @@ def login():
                 return redirect(url_for(
                         "profile", username=session["user"]))
             else:
-                # invalid password match - we do not want to let them know 
-                # exactly which they have wrong as that would make it easier to # brute force entries
-                flash("The username/password you entered is incorrect, please try again")
+                # invalid password match - we do not want to let them know
+                # exactly which they have wrong as that would make it easier to
+                # brute force entries
+                flash(
+                    "The username/password you entered is incorrect, please try again")
                 return redirect(url_for("login"))
 
         else:
             # if username doesn't exist
-            flash("The username/password you entered is incorrect, please try again")
+            flash(
+                "The username/password you entered is incorrect, please try again")
             return redirect(url_for("login")) 
 
     # acts as the else condition if the method is not POST
@@ -280,7 +308,7 @@ def profile(username):
     if "user" not in session:
         flash("Please log in to view your profile")
         return redirect(url_for("login"))
-        
+
     else:
         if session["user"]:
             # get the session user's username from the database
@@ -311,8 +339,10 @@ def add_tradition():
                 "tradition_name": request.form.get("tradition_name"),
                 "category_name": request.form.get("category_name"),
                 "group_name": request.form.get("group_name"),
-                "country_name": request.form.get("country_name"),
-                "tradition_description": request.form.get("tradition_description"),
+                "country_name": request.form.get(
+                    "country_name"),
+                "tradition_description": request.form.get(
+                    "tradition_description"),
                 "trad_image": upload_file(),
                 "created_by": session["user"],
                 # "vote_count": 0,
@@ -321,12 +351,13 @@ def add_tradition():
             flash("Your tradition has been added!")
             return redirect(url_for("get_traditions"))
 
-    # if method is not POST then revert to the default method which is GET    
+    # if method is not POST, revert to the default method - GET
     categories = mongo.db.categories.find().sort("category_name", 1)
     groups = mongo.db.groups.find().sort("group_name", 1)
     countries = mongo.db.countries.find().sort("country_name", 1)
     return render_template(
-        "add_tradition.html", categories=categories, groups=groups, countries=countries)
+        "add_tradition.html",
+        categories=categories, groups=groups, countries=countries)
 
 
 @app.route("/edit_tradition/<tradition_id>", methods=["GET", "POST"])
