@@ -423,22 +423,12 @@ def delete_tradition(tradition_id):
     if "user" not in session: 
         flash("Please log in to delete your traditions")
         return redirect(url_for("login"))
-    
-    # check if user is the tradition owner
-    if session["user"] != trad_owner:
-        traditions = list(mongo.db.traditions.find())
-        username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-        flash("You are trying to edit someone else's tradition!")
-        return render_template(
-            "user_profile.html", username=username, traditions=traditions)
 
     else: 
         mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
         flash("Your tradition has been deleted.")
         return redirect(url_for("get_traditions"))
-        # I need a 'remove image from S3 action
-
+        
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

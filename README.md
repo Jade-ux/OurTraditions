@@ -46,10 +46,6 @@ As the site owner, I have always been interested to learn about other cultures a
 
 ## UX
 
-
-
-                This is a code snippet
-
 <div class="right"><a href="#index"><button class="btn-small">Back to index &#8593;</button></a></div>
 
 
@@ -116,19 +112,14 @@ How I came to the decision of dark colours and
 
 ### Colours
 
-I chose a warm colour palette to elicit feelings of warmth and comfort. When I decided on the colours I was imagining telling stories around the camp fire, which is one of the earliest traditions I can think of. The following colours remind me of fire and warmth:
+I chose a warm colour palette to elicit feelings of warmth and comfort. When I decided on the colours I was imagining telling stories around the camp fire, which is one of the earliest traditions I can think of. The colours used on the site remind me of fire and warmth.
+
+**Accessibility:**
+
+I tested the colours for accessibility and made adjustments to make sure that all colours comply with guidelines. 
 
 [See colour accessibility here](wireframes+mockups/colour-accessibility.pdf)colour-accessibility.pdf
 
-#D2430F
-
-Accessibility:
-
-White text on #D2430F background on .orange-button meets 
-
-
-### Fonts
-?? (required?)
 
 <div class="right"><a href="#index"><button class="btn-small">Back to index &#8593;</button></a></div>
 
@@ -193,43 +184,34 @@ The database is called 'ourTraditions' and contains the following collections:
 
 ## Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
-
 <span id="existingfeatures"></span>
 
 ### Existing Features
 
-1. Register - allows users register so that they can create content and update or delete content they have created.
+1. **Register** - allows users register so that they can create content and update or delete content they have created.
 
-2. Log in - allows users who have already registered to log in to the site and manage the traditions they have added. (Also allows them to vote on other traditions)
+2. **Log in** - allows users who have already registered to log in to the site and manage the traditions they have added. (Also allows them to vote on other traditions)
 
-3. Add tradition - allows logged in users to add new traditions
+3. **Add tradition** - allows logged in users to add new traditions
 
-4.  File upload - allows logged in users to add images to illustrate their traditions by uploading an image. The uploaded image is stored on Amazon AWS and the link retrieved and added to the image element.
+4. **The file upload feature** allows logged in users to add images to illustrate their traditions by uploading an image. The uploaded image is stored on Amazon AWS and the link retrieved and added to the image element.
 
-5.  Choose an image - allows users to choose from a library of available images already uploaded and available on the site, in cases where they do not have their own image to upload. Only images relevant to teh category the user has chosen will show as available in order to provide the most relevant choices to the user.
+5. **The edit tradition feature** allows a logged in user to edit any of the details of a tradition she has created by clicking the 'Edit' button on the tradition card and then changing the details.
 
-6. Edit - Allows a logged in user to edit any of the details of a tradition she has created by clicking the 'Edit' button on the tradition card and then changing the details.
-
-7. **Country field** allows users to choose which country they are in when adding a tradition. This will allow users to see which traditions exist in each country.
+6. **Country field** allows users to choose which country they are in when adding a tradition. This will allow users to see which traditions exist in each country.
 
 7. **The delete feature** allows a logged in user to delete any of the traditions she has created by clicking the 'Delete' button on the tradition card. When the 'Delete' button the tradition is not deleted immediately but a modal pops up asking the user to confirm that they wish to delete it. Only once they have confirmed they want to delete the tradition it is deleted.
 
 8. **The read more button on card** reveals the full description of the tradition when the user clicks the 'Read more' link. If the description overflows the height of the card a scroll bar will be visible to allow the user to scroll through the content.
 
-9. **The profile page** allows logged in users to see the traditions they have added and manage them by editing or deleting.
-
-- ...allows users X to achieve Y, by having them fill out Z
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+9. **The profile page** allows logged in users to see the traditions they have added and manage each by editing or deleting.
 
 <span id="futurefeatures"></span>
 
 ### Features Left to Implement
-- Voting
-- Pagination 
+
+- **Pagination** - for a better user experience I would like to add pagination that will ensure the browse and search pages are not too long.
+- **Voting** - for further interactivity I would like to allow users to vote on other people's traditions. 
 
 <div class="right"><a href="#index"><button class="btn-small">Back to index &#8593;</button></a></div>
 
@@ -278,6 +260,7 @@ There are no differences between the development site and deployed site. The dev
 
 **For MongoDB:**
 
+- Sign up for a MongoDB account, create a new cluster
 - Use SCRAM method to create a username and password
 - Make sure to not use any special characters in your password 
 - Make sure your user priviledges are set to 'Read and write to the database'.
@@ -360,6 +343,7 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 - [Documentation for how to create an Amazon AWS policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-policies-s3.html#iam-policy-ex4)
 - [To set up my Amazon account I used this tutorial.](https://www.youtube.com/watch?v=v33Kl-Kx30o)
 - [For help with Python's string manipulation syntax in Jinja I used this guide.](https://shubhamjain.co/til/capitalizing-first-letter-in-jinja/)
+- For help with the functionality to upload images to Amazon S3, Ed Bradley assisted with code, credited inline in my app.py file
 
 <div class="right"><a href="#index"><button class="btn-small">Back to index &#8593;</button></a></div>
 
@@ -386,12 +370,6 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 ### Acknowledgements
 
 - I received inspiration for this project from my team at Hexagon when we were discussing the different traditions we all celebrate over Christmas and New Year.
-<<<<<<< HEAD
-- Thank you to the Code Institute Tutors for help with a snagging issue
-- Thank you to Ed Bradley and Chris Palmer for their invaluable help through some of my coding questions
-- Thank you to my mentor Dick Vlaanderen for guidance on my project
-=======
 - Thank you to the Code Institute Tutors for help with a coding question
-- Thank you to Ed Bradley, Chris Palmer and Jose for their invaluable help testing my site
+- Thank you to Ed Bradley, Chris Palmer and Jose for their help testing my site
 - Thank you to my mentor Dick Vlaanderen for guidance on my project
->>>>>>> 251bbc3 (Updated README and TESTING files.)
