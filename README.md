@@ -277,11 +277,12 @@ There are no differences between the development site and deployed site. The dev
 1. In Heroku add your config vars (in the 'settings' tab > click 'Reveal config vars')
 
 |**Key**|**Value**|
+|:-----|:-----|
 |IP|`0.0.0.0`|   
 |PORT|`5000`|
 |SECRET_KEY| `<your secret key from MongoDB>`|
 |MONGO_URI|`<your MongoDB URI>`|
-|MONGO_DBNAME|| `<your database name>`
+|MONGO_DBNAME| `<your database name>`
 |S3_BUCKET|`<your bucket name>`|
 |S3_KEY|`<your S3 bucket key>`|
 |S3_SECRET_ACCESS_KEY|`<your S3 secret key>`|
@@ -305,6 +306,7 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 6. Add the following to your env.py file and your app's config vars in Heroku:
 
 |**Key**|**Value**|
+|:-----|:-----|
 |S3_BUCKET|`<your bucket name>`|
 |S3_KEY|`<your S3 bucket key>`|
 |S3_SECRET_ACCESS_KEY|`<your S3 secret key>`|

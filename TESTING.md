@@ -31,9 +31,10 @@
 
 
 |**User story**|**Expected outcome**|**Actual outcome**|
-|**As a user I want to:**|
-| Understand what the purpose of the site is| I expect to find short introduction text explaining the site purpose and for the rest of the site's content to support this purpose|On the home page I find the introduction paragraph under the heading 'Browse & Share' and it explains the site purpose and prompts me to register if I want to add my own traditions.|
-| Explore all traditions on the site| I expect to be able to be able to quickly and easily find the list of traditions |  I quickly find the full list of traditions on the home page under the search options|
+|:-----|:-----|:-----|
+|**As a user I want to:**|||
+|Understand what the purpose of the site is|I expect to find short introduction text explaining the site purpose and for the rest of the site's content to support this purpose|On the home page I find the introduction paragraph under the heading 'Browse & Share' and it explains the site purpose and prompts me to register if I want to add my own traditions.|
+|Explore all traditions on the site| I expect to be able to be able to quickly and easily find the list of traditions |  I quickly find the full list of traditions on the home page under the search options|
 | Search through the traditions by keyword| When I click on 'Search by keyword', type a keyword into the input box, eg. 'birthday' and press 'Search' I expect to see a list of traditions related to birthdays. | When I search the keyword 'birthdays' results appear under the search accordions and the results all contain the keyword searched, either in their title, description, or one of the categories. Or, a message appears telling me that there are no results for my search if no traditions contain the keyword I searched.|
 |Reset the search to show all traditions again| When I press the 'reset' button I expect to see all traditions again.| When I press the 'reset' button all traditions now show under the search accordions.|
 |Search by country| When I select an option from the country select field and press enter, I expect to see traditions that match my search appear| When I click on the accordion for country and then click the field to see the options, I can see a limited list of options. This is showing me only the countries for which traditions exist on the site. I select the country I want to search by and the results that show are only for that country.|
