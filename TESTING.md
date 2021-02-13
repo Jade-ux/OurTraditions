@@ -67,6 +67,19 @@ I manually ran tests on each feature as set out in the user stories above.
 
 ## Responsive design and cross-browser testing
 
+I tested the site across devices using Chrome developer tools. The site has the following breakpoints:
+
+Mobile Devices: <= 600px	
+Tablet Devices: > 600px	
+Desktop Devices: > 992px	
+Large Desktop Devices: > 1200px
+
+I have added styling in to accommodate mobile devices and tablets, making sure the content displays correctly across those devices. 
+
+I tested the user journeys detailed above on an iPhone and desktop computer and with Chrome developer tools to ensure I could follow the same user journeys on each device.
+
+**Browsers** I have tested the site on Firefox and Chrome and using Chrome Lighthouse to find any display bugs across browsers.
+
 <div style="align: right"><a href="#index"><button>Back to index &#8593;</button></a></div>
 
 <span id="code"></span>

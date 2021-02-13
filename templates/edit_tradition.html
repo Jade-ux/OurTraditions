@@ -6,7 +6,8 @@
 <div class="row">
     <h2>Edit your tradition</h2>
     <!--Form-->
-    <form class="col s12" method="POST" enctype="multipart/form-data" action="{{ url_for('edit_tradition', tradition_id=tradition._id) }}">
+    <form class="col s12" method="POST" enctype="multipart/form-data"
+        action="{{ url_for('edit_tradition', tradition_id=tradition._id) }}">
         <!--Tradition name-->
         <div class="row">
             <div class="input-field col s12">
@@ -81,10 +82,9 @@
                         <label for="trad_image" class="image-upload-label">Upload a new image or leave it blank.</label>
                     </div>
                     <div class="s12">
-                        <i class="fas fa-image prefix orange-icon" id="edit-image-icon"></i
-                            >
-                        <input type="file" name="trad_image" id="trad_image"
-                    accept=".jpg, .jpeg, .png, .gif" class="validate image-upload-field">
+                        <i class="fas fa-image prefix orange-icon" id="edit-image-icon"></i>
+                        <input type="file" name="trad_image" id="trad_image" accept=".jpg, .jpeg, .png, .gif"
+                            class="validate image-upload-field">
                     </div>
                 </div>
             </div>

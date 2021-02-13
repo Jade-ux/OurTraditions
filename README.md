@@ -360,7 +360,6 @@ I used Amazon S3 to allow users to upload images to the site to accompany their 
 
 ### Media
 - The background image for this site is from [Toptal](https://www.toptal.com/) 
-- The photo used on this site was obtained from Laura Riviera on [Unsplash](https://unsplash.com/) and edited to remove the background.
 - For testing purposes I have uploaded a few images to the tradition cards, these are also from [Unsplash](https://unsplash.com/)
 - All other photos on the site are uploaded by users.
 
