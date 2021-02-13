@@ -44,21 +44,10 @@ body {
     font-size: 1.6rem;
 }
 
-.feature-image img{
-   width: 80%;
-}
-
 .footer {
     background-color: #13151a;
     padding-top: 20px;
     height: 50px;
-}
-
-@media only screen and (max-width: 991px){
-
-    .feature-image {
-        display: none;
-    }
 }
 
 /*-------------------------------------------------Headings*/
