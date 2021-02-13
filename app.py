@@ -1,5 +1,6 @@
 import os
-import boto3, botocore
+import boto3
+import botocore
 from botocore.client import Config
 from flask import (
     Flask, flash, render_template, redirect,
@@ -195,7 +196,7 @@ def search():
         return render_template(
             "traditions.html",
             traditions=traditions)
-    
+
     else:
         return render_search_results(keywords)
 
@@ -220,7 +221,8 @@ def search_category():
     if category == "":
         flash("Please enter a category")
         traditions = list(mongo.db.traditions.find())
-        return render_template("traditions.html",
+        return render_template(
+            "traditions.html",
             traditions=traditions)
 
     else:
@@ -236,9 +238,10 @@ def search_group():
         return render_template(
             "traditions.html",
             traditions=traditions)
-    
+
     else:
         return render_search_results(group)
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -278,7 +281,7 @@ def login():
         if existing_user:
             # ensure hashed password matches the user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+                    existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for(
@@ -288,14 +291,14 @@ def login():
                 # exactly which they have wrong as that would make it easier to
                 # brute force entries
                 flash(
-                    "The username/password you entered is incorrect, please try again")
+                    "Incorrect username/password, please try again")
                 return redirect(url_for("login"))
 
         else:
             # if username doesn't exist
             flash(
-                "The username/password you entered is incorrect, please try again")
-            return redirect(url_for("login")) 
+                "Incorrect username/password, please try again")
+            return redirect(url_for("login"))
 
     # acts as the else condition if the method is not POST
     return render_template("login.html")
@@ -345,7 +348,6 @@ def add_tradition():
                     "tradition_description"),
                 "trad_image": upload_file(),
                 "created_by": session["user"],
-                # "vote_count": 0,
             }
             mongo.db.traditions.insert_one(tradition)
             flash("Your tradition has been added!")
@@ -366,21 +368,22 @@ def edit_tradition(tradition_id):
         tradition = mongo.db.traditions.find_one(
                     {"_id": ObjectId(tradition_id)})
         trad_owner = tradition["created_by"]
-        # check if user is logged in, if not flash message and redirect to login 
-        if "user" not in session: 
+        # check if user is logged in, if not
+        # # flash message and redirect to login
+        if "user" not in session:
             flash("Please log in to edit your traditions")
             return redirect(url_for("login"))
-        
+
         # check if user is the tradition owner
         if session["user"] != trad_owner:
             traditions = list(mongo.db.traditions.find())
             username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+                {"username": session["user"]})["username"]
             flash("You are trying to edit someone else's tradition!")
             return render_template(
                 "user_profile.html", username=username, traditions=traditions)
 
-        else: 
+        else:
             new_image = request.form.get("trad_image")
             if new_image == "":
                 edited_image = tradition["trad_image"]
@@ -419,19 +422,17 @@ def edit_tradition(tradition_id):
 def delete_tradition(tradition_id):
     tradition = mongo.db.traditions.find_one(
                 {"_id": ObjectId(tradition_id)})
-    trad_owner = tradition["created_by"]
-    if "user" not in session: 
+    if "user" not in session:
         flash("Please log in to delete your traditions")
         return redirect(url_for("login"))
 
-    else: 
+    else:
         mongo.db.traditions.remove({"_id": ObjectId(tradition_id)})
         flash("Your tradition has been deleted.")
         return redirect(url_for("get_traditions"))
-        
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
-
+            debug=False)

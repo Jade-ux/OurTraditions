@@ -331,12 +331,6 @@ li.active {
     font-size: 1.4rem;
 }
 
-/*
-.card-panel {
-    background-color: #000;
-    padding: 35px;
-}
-*/
 .card-actions {
     margin-top: 0.9rem;
 }
@@ -473,11 +467,6 @@ textarea.materialize-textarea:focus:not([readonly])+label {
     background-color: #000;
 }
 
-/*
-.select-dropdown.dropdown-content li.selected, .dropdown-content {
-        background-color: #0c0c0c;
-}*/
-
 .select-dropdown.dropdown-content li.selected {
     display: none;
 }
@@ -495,11 +484,6 @@ textarea.materialize-textarea:focus:not([readonly])+label {
 }
 
 /*-------------------------------------------------Accordions*/
-/* not used at the moment
-.accordion-row {
-    top: 30px;
-    position: relative;
-}*/
 
 .collapsible {
     border: none;

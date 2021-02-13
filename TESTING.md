@@ -53,10 +53,12 @@
 
 ## Functionality 
 
-
+I manually ran tests on each feature as set out in the user stories above.
 
 ### Search form
 
+- In the keyword search I tried to click 'Search' when the keyword field was empty. A validation error appeared asking me to enter something into the search field.
+- In the other fields I did the same, trying to click 'search' without making a selection from the search options. On each a validation message appears asking me to enter a search.
 
 
 <div style="align: right"><a href="#index"><button>Back to index &#8593;</button></a></div>
@@ -71,6 +73,13 @@
 
 ## Code validity
 
+- **Pep8 Compliance** I tested all my Python code with the [Pep8 checker](http://pep8online.com/). I fixed all errors highlighted and the final code now shows no errors in the checker.
+
+- **CSS code validity** I tested all my CSS code with the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) and no errors were found.
+
+- **HTML code** I tested all HTML code with [W3C Markup Validation Service](https://validator.w3.org/) and errors found related to Jinja templating. I fixed all other issues found.
+
+- **JS code validity** I tested the JS code with [JSHint](https://jshint.com/) with no errors found.
 
 <div style="align: right"><a href="#index"><button>Back to index &#8593;</button></a></div>
 
@@ -85,22 +94,3 @@
 - Tradition titles: Jinja does not have a sentence case function, only capitalize() and upper(). I wanted to make sure the tradition titles would appear in sentence case if added that way, to allow for proper nouns. I used Python's string manipulation syntax to achieve this. [I found this guide helpful.](https://shubhamjain.co/til/capitalizing-first-letter-in-jinja/)
 
 <div style="align: right"><a href="#index"><button>Back to index &#8593;</button></a></div>
-
-
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
-
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
