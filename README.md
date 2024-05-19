@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/62659009/107788929-deebcb80-6d48-11eb-89c4-f7e147eb17bc.png)
 
-[View live site](https://our-traditions.herokuapp.com/)
+<!--[View live site](https://our-traditions.herokuapp.com/)-->
 
 # Our Traditions
 
